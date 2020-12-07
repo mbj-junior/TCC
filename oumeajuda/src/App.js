@@ -1,15 +1,18 @@
 import React, { Component } from "react";
 import ListaDeNotas from "./components/ListaDeNotas";
 import FormularioCadastro from "./components/FormularioCadastro";
+import ListaDeCategorias from "./components/ListaDeCategorias/index.js";
 import "./assets/index.css";
 import "./assets/App.css";
 
 class App extends Component {
   constructor() {
     super();
+
     this.notas = [];
     this.state = {
       notas: [],
+      categorias: [],
     };
   }
 
@@ -22,11 +25,23 @@ class App extends Component {
     this.setState(novoEstado);
   }
 
+  deletarNota(index) {
+    let arrayNotas = this.state.notas;
+    arrayNotas.splice(index, 1);
+    this.setState({ notas: arrayNotas });
+  }
+
   render() {
     return (
       <section className="conteudo">
         <FormularioCadastro criarNota={this.criarNota.bind(this)} />
-        <ListaDeNotas notas={this.state.notas} />
+        <main className="conteudo-principal">
+          <ListaDeCategorias />
+          <ListaDeNotas
+            apagarNota={this.deletarNota.bind(this)}
+            notas={this.state.notas}
+          />
+        </main>
       </section>
     );
   }
