@@ -1,27 +1,30 @@
-import React from "react";
-import Button from "@material-ui/core/Button"
+import { Typography } from "@material-ui/core";
+import { useState } from "react";
+import DadosEntrega from "./DadosEntrega";
+import DadosPessoais from "./DadosPessoais";
+import DadosUsuario from "./DadosUsuario";
 
-function FormularioCadastro() {
-  return (
-    <form>
-      <label>Nome</label>
-      <input type="text" />
+function FormularioCadastro({ aoEnviar, validarCPF }) {
+  const [etapaAtual, setEtapaAtual] = useState(0);
 
-      <label>Sobrenome</label>
-      <input type="text" />
+  function proximo() {
+    setEtapaAtual(etapaAtual + 1);
+  }
 
-      <label>CPF</label>
-      <input type="text" />
+  function formularioAtual(etapa) {
+    switch (etapa) {
+      case 0:
+        return <DadosUsuario aoEnviar={proximo} />;
+      case 1:
+        return <DadosPessoais aoEnviar={proximo} validarCPF={validarCPF} />;
+      case 2:
+        return <DadosEntrega aoEnviar={aoEnviar}/>;
+      default:
+        return <Typography>Error ao selecionar formulario</Typography>;
+    }
+  }
 
-      <label>Promoções</label>
-      <input type="checkbox" />
-
-      <label>Novidade</label>
-      <input type="checkbox" />
-
-      <Button type="submit" variant="contained" color="primary">Cadastrar</Button>
-    </form>
-  );
+  return <>{formularioAtual(etapaAtual)}</>;
 }
 
 export default FormularioCadastro;
