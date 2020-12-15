@@ -1,14 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { TextField, Button, Switch, FormControlLabel } from "@material-ui/core";
+import ValidacoesCadastro from "../../contexts/ValidacoesCadastro";
 
-function DadosPessoais({ aoEnviar, validacoes }) {
+function DadosPessoais({ aoEnviar }) {
   const [nome, setNome] = useState("");
   const [sobrenome, setSobrenome] = useState("");
   const [cpf, setCpf] = useState("");
   const [promocoes, setPromocoes] = useState(true);
   const [novidades, setNovidades] = useState(false);
-  const [error, setErros] = useState({ cpf: { valido: true, texto: "" } });
+  const validacoes = useContext(ValidacoesCadastro);
 
+  const [error, setErros] = useState({
+    cpf: { valido: true, texto: "" },
+    nome: { valido: true, texto: "" },
+    sobrenome: { valido: true, texto: "" },
+  });
   function validarCampos(event) {
     const { name, value } = event.target;
     const novoEstado = { ...error };
@@ -37,14 +43,13 @@ function DadosPessoais({ aoEnviar, validacoes }) {
       <TextField
         value={nome}
         onChange={(event) => {
-          let tmpNome = event.target.value;
-          if (tmpNome.length >= 20) {
-            tmpNome = tmpNome.substr(0, 20);
-          }
-
-          setNome(tmpNome);
+          setNome(event.target.value);
         }}
+        onBlur={validarCampos}
+        error={!error.nome.valido}
+        helperText={error.nome.texto}
         id="nome"
+        name="nome"
         label="Nome"
         variant="outlined"
         margin="normal"
@@ -55,7 +60,11 @@ function DadosPessoais({ aoEnviar, validacoes }) {
         onChange={(event) => {
           setSobrenome(event.target.value);
         }}
+        onBlur={validarCampos}
+        error={!error.sobrenome.valido}
+        helperText={error.sobrenome.texto}
         id="sobrenome"
+        name="sobrenome"
         label="Sobrenome"
         variant="outlined"
         margin="normal"

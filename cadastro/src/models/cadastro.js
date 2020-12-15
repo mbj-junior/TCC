@@ -14,4 +14,12 @@ function validarSenha(senha) {
   }
 }
 
-export{validarCPF, validarSenha}
+function validarDigitos(digitos) {
+  if (digitos == 0) {
+    return { valido: false, texto: "Campo deve ser preenchido" };
+  } else {
+    return { valido: true, texto: "" };
+  }
+}
+
+export { validarCPF, validarSenha, validarDigitos };
