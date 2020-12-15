@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { TextField, Button, Switch, FormControlLabel } from "@material-ui/core";
 
-function DadosPessoais({ aoEnviar, validarCPF }) {
+function DadosPessoais({ aoEnviar, validacoes }) {
   const [nome, setNome] = useState("");
   const [sobrenome, setSobrenome] = useState("");
   const [cpf, setCpf] = useState("");
@@ -9,11 +9,29 @@ function DadosPessoais({ aoEnviar, validarCPF }) {
   const [novidades, setNovidades] = useState(false);
   const [error, setErros] = useState({ cpf: { valido: true, texto: "" } });
 
+  function validarCampos(event) {
+    const { name, value } = event.target;
+    const novoEstado = { ...error };
+    novoEstado[name] = validacoes[name](value);
+    setErros(novoEstado);
+  }
+
+  function possoEnviar() {
+    for (let campo in error) {
+      if (!error[campo].valido) {
+        return false;
+      }
+    }
+    return true;
+  }
+
   return (
     <form
       onSubmit={(event) => {
         event.preventDefault();
-        aoEnviar({ nome, sobrenome, cpf, novidades, promocoes });
+        if (possoEnviar()) {
+          aoEnviar({ nome, sobrenome, cpf, novidades, promocoes });
+        }
       }}
     >
       <TextField
@@ -28,7 +46,6 @@ function DadosPessoais({ aoEnviar, validarCPF }) {
         }}
         id="nome"
         label="Nome"
-        color="secondary"
         variant="outlined"
         margin="normal"
         fullWidth
@@ -49,13 +66,11 @@ function DadosPessoais({ aoEnviar, validarCPF }) {
         onChange={(event) => {
           setCpf(event.target.value);
         }}
-        onBlur={(event) => {
-          const ehValido = validarCPF(cpf)
-          setErros({cpf:ehValido});
-        }}
+        onBlur={validarCampos}
         error={!error.cpf.valido}
         helperText={error.cpf.texto}
         id="cpf"
+        name="cpf"
         label="CPF"
         variant="outlined"
         margin="normal"
@@ -90,7 +105,7 @@ function DadosPessoais({ aoEnviar, validarCPF }) {
       />
 
       <Button type="submit" variant="contained" color="primary">
-        Cadastrar
+        Próximo
       </Button>
     </form>
   );

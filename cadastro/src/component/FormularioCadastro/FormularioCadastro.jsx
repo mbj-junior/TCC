@@ -1,30 +1,55 @@
-import { Typography } from "@material-ui/core";
-import { useState } from "react";
+import { Step, StepLabel, Stepper, Typography } from "@material-ui/core";
+import { useEffect, useState } from "react";
 import DadosEntrega from "./DadosEntrega";
 import DadosPessoais from "./DadosPessoais";
 import DadosUsuario from "./DadosUsuario";
 
-function FormularioCadastro({ aoEnviar, validarCPF }) {
+function FormularioCadastro({ aoEnviar, validacoes }) {
   const [etapaAtual, setEtapaAtual] = useState(0);
+  const [dadosColetados, setDados] = useState({});
+  useEffect(() => {
+    if (etapaAtual === formularios.length - 1) {
+      aoEnviar(dadosColetados);
+    }
+  });
 
-  function proximo() {
+  const formularios = [
+    <DadosUsuario aoEnviar={coletarDados} validacoes={validacoes} />,
+    <DadosPessoais aoEnviar={coletarDados} validacoes={validacoes} />,
+    <DadosEntrega aoEnviar={coletarDados} validacoes={validacoes} />,
+    <Typography variant="h5">Obrigado pelo cadastro</Typography>,
+  ];
+
+  function coletarDados(dados) {
+    setDados({ ...dadosColetados, ...dados });
+    proximo();
+  }
+
+  function proximo(dados) {
     setEtapaAtual(etapaAtual + 1);
   }
 
-  function formularioAtual(etapa) {
-    switch (etapa) {
-      case 0:
-        return <DadosUsuario aoEnviar={proximo} />;
-      case 1:
-        return <DadosPessoais aoEnviar={proximo} validarCPF={validarCPF} />;
-      case 2:
-        return <DadosEntrega aoEnviar={aoEnviar}/>;
-      default:
-        return <Typography>Error ao selecionar formulario</Typography>;
-    }
-  }
+  return (
+    <>
+      <Stepper activeStep={etapaAtual}>
+        <Step>
+          <StepLabel>Login</StepLabel>
+        </Step>
+        <Step>
+          <StepLabel>Pessoal</StepLabel>
+        </Step>
+        <Step>
+          <StepLabel>Entrega</StepLabel>
+        </Step>
 
-  return <>{formularioAtual(etapaAtual)}</>;
+        <Step>
+          <StepLabel>Finalização</StepLabel>
+        </Step>
+      </Stepper>
+
+      {formularios[etapaAtual]}
+    </>
+  );
 }
 
 export default FormularioCadastro;
