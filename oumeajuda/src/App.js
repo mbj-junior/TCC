@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import ListaDeNotas from "./components/ListaDeNotas";
-import FormularioCadastro from "./components/FormularioCadastro";
-import ListaDeCategorias from "./components/ListaDeCategorias";
+import ListaDeNotas from "./components/ListaDePedidos";
+import FormularioCadastro from "./components/FormularioPedido";
+import ListaDeCategorias from "./components/ListaDeLinguagem";
 import "./assets/index.css";
 import "./assets/App.css";
 import ArrayDeNotas from "./data/Notas";

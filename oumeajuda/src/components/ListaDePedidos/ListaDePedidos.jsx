@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import CardNota from "../CardNota";
+import CardNota from "../CardPedido";
 import "./estilo.css";
 
 class ListaDeNotas extends Component {
@@ -23,10 +23,10 @@ class ListaDeNotas extends Component {
 
   render() {
     return (
-      <ul className="lista-notas">
+      <ul className="lista-pedidos">
         {this.state.notas.map((nota, index) => {
           return (
-            <li className="lista-notas_item" key={index}>
+            <li className="lista-pedidos_item" key={index}>
               <CardNota
                 indice={index}
                 apagarNota={this.props.apagarNota}

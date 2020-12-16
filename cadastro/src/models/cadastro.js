@@ -15,7 +15,7 @@ function validarSenha(senha) {
 }
 
 function validarDigitos(digitos) {
-  if (digitos == 0) {
+  if (digitos === 0) {
     return { valido: false, texto: "Campo deve ser preenchido" };
   } else {
     return { valido: true, texto: "" };

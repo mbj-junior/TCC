@@ -1,9 +1,13 @@
 .conteudo {
   display: flex;
+  background-color: olivedrab;
+
 }
 
 .conteudo-principal{
   flex-grow: 3;
+  background-color: skyblue;
+
 }
 
 :root {

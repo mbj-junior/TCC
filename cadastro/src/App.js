@@ -4,10 +4,13 @@ import { Container, Typography } from "@material-ui/core";
 import "fontsource-roboto";
 import { validarCPF, validarSenha, validarDigitos } from "./models/cadastro";
 import ValidacoesCadastro from "./contexts/ValidacoesCadastro";
+import Menu from "./component/menu"
 
 function App() {
   return (
+
     <Container component="article" maxWidth="sm">
+      <Menu></Menu>
       <Typography variant="h3" component="h1" align="center">
         Formulário de cadastro
       </Typography>
@@ -22,6 +25,7 @@ function App() {
         <FormularioCadastro aoEnviar={aoEnviarForm} />
       </ValidacoesCadastro.Provider>
     </Container>
+
   );
 }
 

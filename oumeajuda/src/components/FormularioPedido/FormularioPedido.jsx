@@ -73,7 +73,7 @@ class FormularioCadastro extends Component {
         />
 
         <button className="form-cadastro_input form-cadastro_submit">
-          Criar Nota
+          OU ME AJUDA
         </button>
       </form>
     );
