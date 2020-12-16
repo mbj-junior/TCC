@@ -1,6 +1,6 @@
-function validarCPF(cpf) {
-  if (cpf.length !== 11) {
-    return { valido: false, texto: "CPF deve ter 11 digitos" };
+function validarCelular(celular) {
+  if (celular.length !== 11) {
+    return { valido: false, texto: "Celular deve ter 11 digitos" };
   } else {
     return { valido: true, texto: "" };
   }
@@ -22,4 +22,4 @@ function validarDigitos(digitos) {
   }
 }
 
-export { validarCPF, validarSenha, validarDigitos };
+export { validarCelular, validarSenha, validarDigitos };

@@ -1,4 +1,11 @@
 import React, { Component } from "react";
+import {
+  Button,
+  Select,
+  TextareaAutosize,
+  TextField,
+  MenuItem
+} from "@material-ui/core";
 import "./estilo.css";
 
 class FormularioCadastro extends Component {
@@ -47,34 +54,43 @@ class FormularioCadastro extends Component {
   render() {
     return (
       <form className="form-cadastro" onSubmit={this._criarNota.bind(this)}>
-        <select
-          onChange={this._handlerMudancaCategoria.bind(this)}
-          className="form-cadastro_input"
-        >
-          <option>Sem Categoria</option>
+
+        <Select fullWidth onChange={this._handlerMudancaCategoria.bind(this)}>
+          <MenuItem value={10}>Sem Categoria</MenuItem>
 
           {this.state.categorias.map((categoria, index) => {
-            return <option key={index}>{categoria} </option>;
+            return <MenuItem value={categoria} key={index}> {categoria} </MenuItem>;
           })}
-        </select>
 
-        <input
+          <MenuItem value={20}>
+
+          </MenuItem>
+        </Select>
+
+        <TextField
+          id="titulo"
+          label="Título"
           type="text"
-          placeholder="Título"
-          className="form-cadastro_input"
+          required
+          variant="outlined"
+          margin="normal"
           onChange={this._handlerMudancaTitulo.bind(this)}
+          fullWidth
         />
 
-        <textarea
-          rows={15}
+        <TextareaAutosize
+          rowsMax={10}
           placeholder="Escreva sua nota..."
-          className="form-cadastro_input"
+          required
+          variant="outlined"
+          margin="normal"
           onChange={this._handlerMudancaTexto.bind(this)}
+          fullWidth
         />
 
-        <button className="form-cadastro_input form-cadastro_submit">
+        <Button type="submit" variant="contained" color="secondary" fullWidth>
           OU ME AJUDA
-        </button>
+        </Button>
       </form>
     );
   }

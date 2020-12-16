@@ -1,12 +1,12 @@
 .conteudo {
   display: flex;
-  background-color: olivedrab;
+  background-color: rgb(244, 243, 250);
 
 }
 
 .conteudo-principal{
   flex-grow: 3;
-  background-color: skyblue;
+  background-color: rgb(244, 243, 250);
 
 }
 

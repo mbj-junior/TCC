@@ -3,7 +3,7 @@ import FormularioCadastro from "./FormularioCadastro";
 import { Container, Typography } from "@material-ui/core";
 import "fontsource-roboto";
 import {
-  validarCPF,
+  validarCelular,
   validarSenha,
   validarDigitos,
 } from "../../models/cadastro";
@@ -17,7 +17,7 @@ function FormularioCadastroContent() {
       </Typography>
       <ValidacoesCadastro.Provider
         value={{
-          cpf: validarCPF,
+          celular: validarCelular,
           senha: validarSenha,
           nome: validarDigitos,
           sobrenome: validarDigitos,

@@ -6,7 +6,7 @@ import useErros from "../../hooks/useErros";
 function DadosPessoais({ aoEnviar }) {
   const [nome, setNome] = useState("");
   const [sobrenome, setSobrenome] = useState("");
-  const [cpf, setCpf] = useState("");
+  const [celular, setCelular] = useState("");
   const [promocoes, setPromocoes] = useState(true);
   const [novidades, setNovidades] = useState(false);
   const validacoes = useContext(ValidacoesCadastro);
@@ -18,7 +18,7 @@ function DadosPessoais({ aoEnviar }) {
       onSubmit={(event) => {
         event.preventDefault();
         if (possoEnviar()) {
-          aoEnviar({ nome, sobrenome, cpf, novidades, promocoes });
+          aoEnviar({ nome, sobrenome, celular, novidades, promocoes });
         }
       }}
     >
@@ -53,18 +53,19 @@ function DadosPessoais({ aoEnviar }) {
         fullWidth
       />
       <TextField
-        value={cpf}
+        value={celular}
         onChange={(event) => {
-          setCpf(event.target.value);
+          setCelular(event.target.value);
         }}
         onBlur={validarCampos}
-        error={!erros.cpf.valido}
-        helperText={erros.cpf.texto}
-        id="cpf"
-        name="cpf"
-        label="CPF"
+        error={!erros.celular.valido}
+        helperText={erros.celular.texto}
+        id="celular"
+        name="celular"
+        label="Celular"
         variant="outlined"
         margin="normal"
+        type="tel"
         fullWidth
       />
 
