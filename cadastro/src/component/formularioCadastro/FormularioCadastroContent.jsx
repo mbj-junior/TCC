@@ -2,13 +2,16 @@ import "../../App.css";
 import FormularioCadastro from "./FormularioCadastro";
 import { Container, Typography } from "@material-ui/core";
 import "fontsource-roboto";
-import { validarCPF, validarSenha, validarDigitos } from "../../models/cadastro";
+import {
+  validarCPF,
+  validarSenha,
+  validarDigitos,
+} from "../../models/cadastro";
 import ValidacoesCadastro from "../../contexts/ValidacoesCadastro";
 
 function FormularioCadastroContent() {
   return (
     <Container component="article" maxWidth="sm">
-      
       <Typography variant="h3" component="h1" align="center">
         Formulário de cadastro
       </Typography>
