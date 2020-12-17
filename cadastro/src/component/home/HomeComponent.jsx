@@ -6,6 +6,8 @@ import "../../assets/index.css";
 import "../../assets/App.css";
 import ArrayDeNotas from "../../data/Notas";
 import Categorias from "../../data/Categorias";
+import { Container, Typography } from "@material-ui/core";
+import "fontsource-roboto";
 
 class HomeComponent extends Component {
   constructor() {
@@ -16,12 +18,16 @@ class HomeComponent extends Component {
 
   render() {
     return (
-      <section className="conteudo">
-        <FormularioCadastro
-          categorias={this.categorias}
-          criarNota={this.notas.adicionarNota.bind(this.notas)}
-        />
+      <Container component="article" maxWidth="sm">
+        <Typography variant="h4" component="h1" align="center">
+          Formulário de cadastro
+        </Typography>
+
         <main className="conteudo-principal">
+          <FormularioCadastro
+            categorias={this.categorias}
+            criarNota={this.notas.adicionarNota.bind(this.notas)}
+          />
           <ListaDeCategorias
             adicionarCategoria={this.categorias.adicionarCategoria.bind(
               this.categorias
@@ -33,7 +39,7 @@ class HomeComponent extends Component {
             notas={this.notas}
           />
         </main>
-      </section>
+      </Container>
     );
   }
 }

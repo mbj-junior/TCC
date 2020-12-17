@@ -8,17 +8,15 @@ function DadosPessoais({ aoEnviar }) {
   const [sobrenome, setSobrenome] = useState("");
   const [celular, setCelular] = useState("");
   const [promocoes, setPromocoes] = useState(true);
-  const [novidades, setNovidades] = useState(false);
   const validacoes = useContext(ValidacoesCadastro);
   const [erros, validarCampos, possoEnviar] = useErros(validacoes);
-
 
   return (
     <form
       onSubmit={(event) => {
         event.preventDefault();
         if (possoEnviar()) {
-          aoEnviar({ nome, sobrenome, celular, novidades, promocoes });
+          aoEnviar({ nome, sobrenome, celular, promocoes });
         }
       }}
     >
@@ -64,8 +62,6 @@ function DadosPessoais({ aoEnviar }) {
         name="celular"
         label="Celular"
         variant="outlined"
-        margin="normal"
-        type="tel"
         fullWidth
       />
 
@@ -77,27 +73,14 @@ function DadosPessoais({ aoEnviar }) {
             onChange={(event) => {
               setPromocoes(event.target.checked);
             }}
-            name="Promoções"
-            color="primary"
-          />
-        }
-      />
-      <FormControlLabel
-        label="Novidades"
-        control={
-          <Switch
-            checked={novidades}
-            onChange={(event) => {
-              setNovidades(event.target.checked);
-            }}
-            name="Novidades"
+            name="Professor"
             color="primary"
           />
         }
       />
 
-      <Button type="submit" variant="contained" color="primary">
-        Próximo
+      <Button type="submit" variant="contained" color="primary" fullWidth>
+        Cadastrar
       </Button>
     </form>
   );

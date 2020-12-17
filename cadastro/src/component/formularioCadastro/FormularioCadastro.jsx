@@ -1,6 +1,5 @@
 import { Step, StepLabel, Stepper, Typography } from "@material-ui/core";
 import { useEffect, useState } from "react";
-import DadosEntrega from "./DadosEntrega";
 import DadosPessoais from "./DadosPessoais";
 import DadosUsuario from "./DadosUsuario";
 
@@ -16,7 +15,6 @@ function FormularioCadastro({ aoEnviar, validacoes }) {
   const formularios = [
     <DadosUsuario aoEnviar={coletarDados} />,
     <DadosPessoais aoEnviar={coletarDados} />,
-    <DadosEntrega aoEnviar={coletarDados} />,
     <Typography variant="h5">Obrigado pelo cadastro</Typography>,
   ];
 
@@ -39,11 +37,7 @@ function FormularioCadastro({ aoEnviar, validacoes }) {
           <StepLabel>Pessoal</StepLabel>
         </Step>
         <Step>
-          <StepLabel>Entrega</StepLabel>
-        </Step>
-
-        <Step>
-          <StepLabel>Finalização</StepLabel>
+          <StepLabel>Duvida</StepLabel>
         </Step>
       </Stepper>
 

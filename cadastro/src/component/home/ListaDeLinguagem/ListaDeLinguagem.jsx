@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import "./estilo.css";
+// import "./estilo.css";
+import {  TextField } from "@material-ui/core";
 
 class ListaDeCategorias extends Component {
   constructor() {
@@ -38,7 +39,11 @@ class ListaDeCategorias extends Component {
             );
           })}
         </ul>
-        <input
+
+         <TextField
+          id="titulo"
+          variant="outlined"
+          fullWidth
           type="text"
           className="lista-categorias_input"
           placeholder="Adicionar Linguagem"

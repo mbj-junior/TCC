@@ -4,7 +4,7 @@ import {
   Select,
   TextareaAutosize,
   TextField,
-  MenuItem
+  MenuItem,
 } from "@material-ui/core";
 import "./estilo.css";
 
@@ -13,7 +13,7 @@ class FormularioCadastro extends Component {
     super(props);
     this.titulo = "";
     this.texto = "";
-    this.categoria = "Sem Categoria";
+    this.categoria = "Linguagem";
     this.state = { categorias: [] };
     this._novasCategorias = this._novasCategorias.bind(this);
   }
@@ -54,17 +54,22 @@ class FormularioCadastro extends Component {
   render() {
     return (
       <form className="form-cadastro" onSubmit={this._criarNota.bind(this)}>
-
-        <Select fullWidth onChange={this._handlerMudancaCategoria.bind(this)}>
-          <MenuItem value={10}>Sem Categoria</MenuItem>
+        <Select
+          variant="outlined"
+          margin="normal"
+          fullWidth
+          onChange={this._handlerMudancaCategoria.bind(this)}
+        >
+          <MenuItem value={"Linguagem Não informada"}>linguagem</MenuItem>
 
           {this.state.categorias.map((categoria, index) => {
-            return <MenuItem value={categoria} key={index}> {categoria} </MenuItem>;
+            return (
+              <MenuItem value={categoria} key={index}>
+                {" "}
+                {categoria}{" "}
+              </MenuItem>
+            );
           })}
-
-          <MenuItem value={20}>
-
-          </MenuItem>
         </Select>
 
         <TextField
@@ -75,17 +80,16 @@ class FormularioCadastro extends Component {
           variant="outlined"
           margin="normal"
           onChange={this._handlerMudancaTitulo.bind(this)}
-          fullWidth
         />
 
         <TextareaAutosize
           rowsMax={10}
-          placeholder="Escreva sua nota..."
+          rowsMin="3"
+          placeholder="Qual a sua dificuldade?"
           required
           variant="outlined"
           margin="normal"
           onChange={this._handlerMudancaTexto.bind(this)}
-          fullWidth
         />
 
         <Button type="submit" variant="contained" color="secondary" fullWidth>

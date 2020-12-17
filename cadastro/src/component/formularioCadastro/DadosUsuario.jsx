@@ -49,7 +49,7 @@ function DadosUsuario({ aoEnviar }) {
         margin="normal"
         fullWidth
       />
-      <Button type="submit" variant="contained" color="primary">
+      <Button type="submit" variant="contained" color="primary" fullWidth>
         Próximo
       </Button>
     </form>

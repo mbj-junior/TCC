@@ -12,7 +12,7 @@ import ValidacoesCadastro from "../../contexts/ValidacoesCadastro";
 function FormularioCadastroContent() {
   return (
     <Container component="article" maxWidth="sm">
-      <Typography variant="h3" component="h1" align="center">
+      <Typography variant="h4" component="h1" align="center">
         Formulário de cadastro
       </Typography>
       <ValidacoesCadastro.Provider
