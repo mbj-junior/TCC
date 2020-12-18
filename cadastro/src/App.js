@@ -1,4 +1,4 @@
-import "./App.css";
+// import "./App.css";
 import "fontsource-roboto";
 import Menu from "./component/Menu";
 

@@ -1,0 +1,39 @@
+CREATE DATABASE oumeajuda_db;
+USE oumeajuda_db;
+
+CREATE TABLE IF NOT EXISTS language (
+language_id INT AUTO_INCREMENT PRIMARY KEY,
+language_name VARCHAR (50) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS user(
+user_id INT AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(100) NOT NULL,
+lastname VARCHAR(100) NOT NULL,
+type VARCHAR(1) NOT NULL,
+phone BIGINT,
+created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS help (
+help_id INT AUTO_INCREMENT PRIMARY KEY,
+description VARCHAR(100) NOT NULL,
+user_id INT NOT NULL,
+allow_phone_number BOOLEAN NOT NULL,
+professor_id INT,
+language_id INT,
+created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+accepted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+closed_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+FOREIGN KEY (user_id) REFERENCES user (user_id),
+FOREIGN KEY (professor_id) REFERENCES user (user_id),
+FOREIGN KEY (language_id) REFERENCES language (language_id)
+);
+
+CREATE TABLE IF NOT EXISTS login(
+user_id INT,
+email VARCHAR(100) NOT NULL,
+psw VARCHAR(255) NOT NULL,
+PRIMARY KEY (user_id),    
+FOREIGN KEY (user_id) REFERENCES user (user_id)
+);

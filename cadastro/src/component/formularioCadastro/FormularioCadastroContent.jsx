@@ -1,4 +1,4 @@
-import "../../App.css";
+// import "../../App.css";
 import FormularioCadastro from "./FormularioCadastro";
 import { Container, Typography } from "@material-ui/core";
 import "fontsource-roboto";
@@ -29,8 +29,7 @@ function FormularioCadastroContent() {
   );
 }
 
-function aoEnviarForm(dados) {
-  console.log(dados);
+function aoEnviarForm() {
 }
 
 export default FormularioCadastroContent;

@@ -9,7 +9,8 @@ import {
   Box,
 } from "@material-ui/core";
 import FormularioCadastroContent from "./formularioCadastro/FormularioCadastroContent";
-import HomeComponent from "../component/home/HomeComponent";
+import HomeComponent from "./formularioAjuda/HomeComponent";
+import MuralPedidos from "./muralPedidos/MuralPedidos"
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -72,7 +73,11 @@ export default function SimpleTabs() {
           <Tab label="Cadastro" {...a11yProps(2)} />
         </Tabs>
       </AppBar>
-      <TabPanel value={value} index={0}></TabPanel>
+      <TabPanel value={value} index={0}>
+
+        <MuralPedidos></MuralPedidos>
+
+      </TabPanel>
       <TabPanel value={value} index={1}>
         <HomeComponent></HomeComponent>
       </TabPanel>
