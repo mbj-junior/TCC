@@ -1,33 +1,61 @@
 const usuarioModel = require("../models/usuarioModel");
+const dbConnection = require("../config/dbConnection");
 
 exports.usuarioListar = (req, res, next) => {
   let usuarioId = req.params.id;
 
-//   const connection = dbConnection();
+  const connection = dbConnection();
 
-//   usuarioModel.getUsuarioById(connection, usuarioId, function (err, results) {
-//       if (!err) {
-//         res.status(200).json(results);
-//       } else {
-//         res.status(404).send("Esse usuario não existe!");
-//       }
-//     }
-//   );
+  usuarioModel.getUsuarioById(connection, usuarioId, function (err, results) {
+    if (!err) {
 
-  res.status(200).json({ id: usuarioId, message: "Um usuário -- log provisório" }); //Comentar qdo for testar com banco
+      if(results[0]){
+        res.status(200).json({
+          usuario: results[0],
+          message: "Usuario criado.",
+        });
+      }
+      else{
+        res.status(200).json({
+          code: "EMPTY",     
+          usuario: null,  
+          message: "Esse usuário não existe.",
+        });
+      }
+      
+    } else {
+      res.status(404).send({
+        code: "ERROR",
+        usuario: null,
+        message: "Ocorreu algum erro ao criar o usuário.",
+      });
+    }
+  });
 };
 
 exports.usuarioSalvar = (req, res, next) => {
-//   let usuario = req.body;
-//   const connection = dbConnection();
+  let usuario = {
+    name: req.body.name,
+    lastname: req.body.lastname,
+    type: req.body.type,
+    phone: req.body.phone,
+  };
 
-//   usuarioModel.saveusuario(connection, usuario, function (err, results) {
-//     if (!err) {
-//       res.status(201).json(results);
-//     } else {
-//       res.status(500).send("Aconteceu algum erro ao criar o usuario!");
-//     }
-//   });
+  const connection = dbConnection();
 
-  res.status(200).json({ message: "Salvar  usuário -- log provisório" }); //Comentar qdo for testar com banco
+  usuarioModel.saveUsuario(connection, usuario, function (err, results) {
+    if (!err) {
+      res.status(201).json({
+        code: "OK",
+        usuario: { user_id: results.insertId },
+        message: "Usuario criado.",
+      });
+    } else {
+      res.status(500).send({
+        code: "ERROR",
+        usuario: null,
+        message: "Ocorreu algum erro ao criar o usuário.",
+      });
+    }
+  });
 };

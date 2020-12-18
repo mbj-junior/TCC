@@ -6,6 +6,8 @@ const linguagemRotas = require("./routes/linguagemRoutes");
 const loginRotas = require("./routes/loginRoutes");
 const usuarioRotas = require("./routes/usuarioRoutes");
 
+app.use(express.json());
+
 app.use("/", index);
 app.use("/ajuda", ajudaRotas);
 app.use("/linguagem", linguagemRotas);

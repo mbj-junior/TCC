@@ -2,11 +2,10 @@ import React, { Component } from "react";
 import {
   Button,
   Select,
-  TextareaAutosize,
   TextField,
   MenuItem,
 } from "@material-ui/core";
-import "./estilo.css";
+// import "./estilo.css";
 
 
 
@@ -81,15 +80,18 @@ class FormularioCadastro extends Component {
           required
           variant="outlined"
           margin="normal"
+          fullWidth
           onChange={this._handlerMudancaTitulo.bind(this)}
         />
 
-        <TextareaAutosize
-          rowsMax={10}
-          rowsMin="3"
-          placeholder="Qual a sua dificuldade?"
+        <TextField
+          id="body"
+          label="Qual a sua dificuldade?"
+          type="text"
           required
+          fullWidth
           variant="outlined"
+          margin="normal"
           onChange={this._handlerMudancaTexto.bind(this)}
         />
 

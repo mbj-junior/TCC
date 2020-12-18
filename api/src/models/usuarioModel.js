@@ -11,7 +11,9 @@ module.exports = {
   },
 
   saveUsuario: function (connection, usuario, callback) {
-    let sql = "insert into user set ?";
+
+    let sql = "insert into user set ?"
+
     connection.query(sql, usuario, callback);
   },
 
