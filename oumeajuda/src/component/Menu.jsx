@@ -64,13 +64,15 @@ export default function SimpleTabs() {
     <div className={classes.root}>
       <AppBar position="static">
         <Tabs
+          centered={true}
           value={value}
           onChange={handleChange}
-          aria-label="simple tabs example"
+          aria-label="string"
+          indicatorColor="secondary"
         >
           <Tab label="MURAL DE PEDIDOS" {...a11yProps(0)} />
           <Tab label="OU ME AJUDA" {...a11yProps(1)} />
-          <Tab label="Cadastro" {...a11yProps(2)} />
+          <Tab label="CADASTRO" {...a11yProps(2)} />
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>

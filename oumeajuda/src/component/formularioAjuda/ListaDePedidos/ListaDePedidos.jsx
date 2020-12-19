@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import CardNota from "../CardPedido";
 import "./estilo.css";
+import { Grid, List, ListItemText } from "@material-ui/core";
+
 
 class ListaDeNotas extends Component {
   constructor() {
@@ -23,21 +25,22 @@ class ListaDeNotas extends Component {
 
   render() {
     return (
-      <ul className="lista-pedidos">
+      <Grid className="lista-pedidos">
+
         {this.state.notas.map((nota, index) => {
           return (
-            <li className="lista-pedidos_item" key={index}>
+            <List className="lista-pedidos_item" key={index}>
               <CardNota
                 indice={index}
                 apagarNota={this.props.apagarNota}
                 titulo={nota.titulo}
-                texto={nota.texto}
+                ListItemText texto={nota.texto}
                 categoria={nota.categoria}
               />
-            </li>
+            </List>
           );
         })}
-      </ul>
+      </Grid> 
     );
   }
 }

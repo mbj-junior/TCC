@@ -7,7 +7,7 @@ import { useAsync } from 'react-async';
 
 function MuralPedidos() {
   
-  const { data, error } = useAsync({ promiseFn: listarLinguagens()})
+  // const { data, error } = useAsync({ promiseFn: listarLinguagens()})
   // let nome = data.linguagens
   // console.log(nome[0].language_name)
 

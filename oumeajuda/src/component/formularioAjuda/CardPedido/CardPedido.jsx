@@ -11,7 +11,6 @@ class CardNota extends Component {
 
   render() {
     return (
-      <Grid container spacing={2}>
       <Grid item xs={12}>
         <header>
           <h4>
@@ -21,7 +20,6 @@ class CardNota extends Component {
           <h4 className="card-nota_titulo">{this.props.titulo}</h4>
         </header>
         <p className="card-nota_texto">{this.props.texto}</p>
-      </Grid>
       </Grid>
     );
   }
