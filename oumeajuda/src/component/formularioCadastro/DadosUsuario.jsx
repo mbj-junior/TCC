@@ -3,12 +3,31 @@ import React, { useState, useContext } from "react";
 import ValidacoesCadastro from "../../contexts/ValidacoesCadastro";
 import useErros from "../../hooks/useErros";
 
+const conectar = async () => {
+  return await fetch("http://localhost:7000/login/new", {
+    method: "post",
+    body: JSON.stringify({
+      email: "pagina@react.com",
+      psw: "1234",
+    }),
+  })
+    .then((resp) => {
+      return resp.json();
+    })
+    .then((json) => {
+      return json;
+    });
+};
+
+let _criarLogin = () => {
+  conectar();
+};
+
 function DadosUsuario({ aoEnviar }) {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const validacoes = useContext(ValidacoesCadastro);
   const [erros, validarCampos, possoEnviar] = useErros(validacoes);
-
 
   return (
     <form
@@ -50,7 +69,13 @@ function DadosUsuario({ aoEnviar }) {
         fullWidth
       />
       <br></br>
-      <Button type="submit" variant="contained" color="primary" fullWidth >
+      <Button
+        type="submit"
+        action={conectar()}
+        variant="contained"
+        color="primary"
+        fullWidth
+      >
         LOGIN
       </Button>
       <br></br>
