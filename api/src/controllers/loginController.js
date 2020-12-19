@@ -1,4 +1,7 @@
-// const loginModel = require("../models/loginModel");
+const loginModel = require("../models/loginModel");
+const usuarioModel = require("../models/usuarioModel");
+const { convertToUsuarioDTO } = require("./converters/usuarioConverter");
+const dbConnection = require("../config/dbConnection");
 
 exports.getLogin = (req, res, next) => {
   //   let login = req.body; //{ email: "", psw: ""}
@@ -25,25 +28,48 @@ exports.getLogin = (req, res, next) => {
 };
 
 exports.postLogin = (req, res, next) => {
-  //   let login = req.body; //{ email: "", psw: ""}
+  let login = req.body;
 
-  //   const connection = dbConnection();
+  const connection = dbConnection();
 
-  //   loginModel.saveLogin(connection, login, function (err, results) {
-  //       if (!err) {
-  //         //TODO descriptografar
-  //         //comparar com o valor salvo no banco
-  //             //se for igual retornar
-  //             res.status(200).json({message: 'Logado com sucesso'});
+  //criar um novo usuário vazio
+  let usuario = {
+    name: "new",
+    lastname: "new",
+    type: "n",
+    phone: 11111111111,
+  };
 
-  //             //se não for igual
-  //             res.status(200).json({message: 'Usuário ou senha incorretos'});
+  usuarioModel.saveUsuario(connection, usuario, function (err, results) {
 
-  //       } else {
-  //         res.status(500).send("Aconteceu algum erro");
-  //       }
-  //     }
-  //   );
-  
-  res.status(200).json({ message: "Salvar Login -- log provisório" }); //Comentar qdo for testar com banco
+    if (!err) {
+      let id = results.insertId;
+      login = { ...login, ...{ user_id: id } };
+
+      loginModel.saveLogin(connection, login, function (err, results) {
+        if (!err) {
+          //TODO descriptografar login.psw
+          res.status(200).json({
+            code: "OK",
+            usuario: convertToUsuarioDTO({ user_id: id }),
+            message: "Logado criado sucesso.",
+          });
+        } else {
+          res.status(500).send({
+            code: "ERROR",
+            usuario: null,
+            message:
+              "Ocorreu algum erro ao buscar o usuário: [" + err.message + "].",
+          });
+        }
+      });
+    } else {
+      res.status(500).send({
+        code: "ERROR",
+        usuario: null,
+        message:
+          "Ocorreu algum erro ao criar o usuário: [" + err.message + "].",
+      });
+    }
+  });
 };

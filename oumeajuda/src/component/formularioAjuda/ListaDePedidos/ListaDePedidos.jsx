@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import CardPedido from "../CardPedido";
 import "./estilo.css";
-import { Grid, List, ListItemText } from "@material-ui/core";
+import { Grid, List} from "@material-ui/core";
 
 
 class ListaDeNotas extends Component {
