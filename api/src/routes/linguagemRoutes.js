@@ -9,14 +9,14 @@ Se houver linguagens cadastradas:
 CODE: 200
     {
         "code": "OK",
-        "linguagem": [
+        "linguagens": [
             {
-                "language_id": 1,
-                "language_name": "JAVA"
+                "languageId": 1,
+                "languageName": "JAVA"
             },
             {
-                "language_id": 2,
-                "language_name": "JAVA SCRIPT"
+                "languageId": 2,
+                "languageName": "JAVA SCRIPT"
             }
         ],
         "message": "Linguagens cadastradas."
@@ -25,15 +25,15 @@ Se não houver linguagens cadastradas:
 CODE: 404
     {
         "code": "EMPTY",
-        "linguagem": null
+        "linguagens": null
         "message": "Não existem linguagens cadastradas."
     }
 Se ocorrer ERRO:
 CODE: 500
     {
         "code": "ERROR",
-        "usuario": null,
-        "message": "Ocorreu algum erro ao buscar as linguagens."
+        "linguagens": null,
+        "message": "Ocorreu algum erro ao buscar as linguagens: [mensagem do erro]."
     }
 **/
 router.get('/:id', controller.linguagemListar);
@@ -43,25 +43,25 @@ Se houver linguagens cadastradas:
 CODE: 200
     {
         "code": "OK",
-        "linguagem": {
-                    "language_id": 1,
-                    "language_name": "JAVA"
-                    },
+        "linguagens": {
+            "languageId": 1,
+            "languageName": "JAVA"
+        },
         "message": "Linguagem buscada."
     }
 Se não houver linguagens cadastradas:
 CODE: 404
     {
         "code": "EMPTY",
-        "linguagem": null,
+        "linguagens": null,
         "message": "A linguagem buscada não existe."
     }
 Se ocorrer ERRO:
 CODE: 500
     {
         "code": "ERROR",
-        "usuario": null,
-        "message": "Ocorreu algum erro ao buscar a linguagem."
+        "linguagens": null,
+        "message": "Ocorreu algum erro ao buscar a linguagem: [mensagem do erro]."
     }
 **/
 
@@ -69,24 +69,25 @@ router.post('/', controller.linguagemSalvar);
 /**
 BODY:
     {
-        "language_name": "KOTLIN"
+        "languageName": "JAVA"
     }
 Se salvar corretamente:
 CODE: 201
     {
         "code": "OK",
-        "usuario": {
-            "user_id": 5
+        "linguagens": {
+            "languageId": 7,
+            "languageName": null
         },
         "message": "Linguagem criada."
     }
 Se ocorrer ERRO:
 CODE: 500
-{
-    "code": "ERROR",
-    "usuario": null,
-    "message": "Ocorreu algum erro ao salvar a linguagem."
-}
+    {
+        "code": "ERROR",
+        "linguagens": null,
+        "message": "Ocorreu algum erro ao salvar a linguagem: [mensagem do erro]."
+    }
 **/
 
 

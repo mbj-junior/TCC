@@ -4,8 +4,8 @@ export default class ArrayDeNotas {
     this._inscritos = [];
   }
 
-  adicionarNota(titulo, texto, categoria) {
-    const novaNota = new Nota(titulo, texto, categoria);
+  adicionarNota(titulo, texto, categoria, contato) {
+    const novaNota = new Nota(titulo, texto, categoria, contato);
     this.notas.push(novaNota);
     this.notificar();
   }
@@ -31,9 +31,10 @@ export default class ArrayDeNotas {
 }
 
 class Nota {
-  constructor(titulo, texto, categoria) {
+  constructor(titulo, texto, categoria, contato) {
     this.titulo = titulo;
     this.texto = texto;
     this.categoria = categoria;
+    this.contato = contato
   }
 }

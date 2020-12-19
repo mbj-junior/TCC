@@ -5,16 +5,15 @@ import {
   TextField,
   MenuItem,
 } from "@material-ui/core";
-// import "./estilo.css";
 
 
-
-class FormularioCadastro extends Component {
+class FormularioPedido extends Component {
   constructor(props) {
     super(props);
     this.titulo = "";
     this.texto = "";
     this.categoria = "Linguagem";
+    this.contato = "";
     this.state = { categorias: [] };
     this._novasCategorias = this._novasCategorias.bind(this);
   }
@@ -46,22 +45,28 @@ class FormularioCadastro extends Component {
     this.texto = evento.target.value;
   }
 
+  _handlerMudancaContato(evento) {
+    evento.stopPropagation();
+    this.contato = evento.target.value;
+  }
+
   _criarNota(evento) {
     evento.preventDefault();
     evento.stopPropagation();
-    this.props.criarNota(this.titulo, this.texto, this.categoria);
+    this.props.criarNota(this.titulo, this.texto, this.categoria, this.contato);
   }
 
   render() {
     return (
       <form className="form-cadastro" onSubmit={this._criarNota.bind(this)}>
-        <Select
+        <Select label="Age"
           variant="outlined"
           margin="normal"
           fullWidth
           onChange={this._handlerMudancaCategoria.bind(this)}
         >
-          <MenuItem value={"Linguagem Não informada"}>linguagem</MenuItem>
+          <MenuItem value={"Java"}>Java</MenuItem>
+          <MenuItem value={"React"}>React</MenuItem>
 
           {this.state.categorias.map((categoria, index) => {
             return (
@@ -83,6 +88,7 @@ class FormularioCadastro extends Component {
           fullWidth
           onChange={this._handlerMudancaTitulo.bind(this)}
         />
+        
 
         <TextField
           id="body"
@@ -95,6 +101,17 @@ class FormularioCadastro extends Component {
           onChange={this._handlerMudancaTexto.bind(this)}
         />
 
+        <TextField
+          id="contato"
+          label="Contato?"
+          type="text"
+          required
+          fullWidth
+          variant="outlined"
+          margin="normal"
+          onChange={this._handlerMudancaContato.bind(this)}
+        />
+
         <Button type="submit" variant="contained" color="primary" fullWidth>
           OU ME AJUDA
         </Button>
@@ -103,4 +120,4 @@ class FormularioCadastro extends Component {
   }
 }
 
-export default FormularioCadastro;
+export default FormularioPedido;

@@ -8,14 +8,13 @@ RESPONSE:
 Se usuário existir:
 Code: 200
     {
-        "code": "OK",
         "usuario": {
-            "user_id": 1,
+            "id": 1,
             "name": "José",
             "lastname": "Aquiles",
             "type": "P",
             "phone": 12987456321,
-            "created_at": "2020-12-18T01:28:20.000Z"
+            "createdAt": "2020-12-18T01:28:20.000Z"
         },
         "message": "Usuario buscado."
     }
@@ -33,7 +32,7 @@ Code: 500
     {
         "code": "ERROR",
         "usuario": null,
-        "message": "Ocorreu algum erro ao buscar o usuário."
+        "message": "Ocorreu algum erro ao buscar o usuário: [mensagem do erro]."
     }
 
  */
@@ -51,19 +50,57 @@ RESPONSE:
 Se usuário criado corretamente:
 Code: 201
     {
-        "code": "ERROR",
+        "code": "OK",
         "usuario": {
-                        user_id: 13
-                    },
-        "message": "Usuário criado."
-        
+            "id": 16,
+            "name": null,
+            "lastname": null,
+            "type": null,
+            "phone": null,
+            "createdAt": null
+        },
+        "message": "Usuario criado."
     }
+
 Se ocorrer erro no banco:
 Code: 500
     {
         "code": "ERROR",
         "usuario": null,
-        "message": "Ocorreu algum erro ao criar o usuário."
+        "message": "Ocorreu algum erro ao criar o usuário: [mensagem do erro]."
+    }
+ **/
+
+router.put("/:id", controller.usuarioAlterar);
+/**
+BODY:
+    {
+        "name": "Joséba",
+        "lastname": "Aquiles",
+        "type": "P",
+        "phone": 12987456321
+    }
+
+RESPONSE:
+Se usuário alterado corretamente:
+Code: 200
+    {
+        "code": "OK",
+        "message": "Usuario alterado."
+    }
+Se não existir o usuário no banco:
+Code: 404
+    {
+        "code": "WARNING",
+        "message": "Não existe nenhum usuário cadastrado com esse id."
+    }
+
+Se ocorrer erro no banco:
+Code: 500
+    {
+        "code": "ERROR",
+        "usuario": null,
+        "message": "Ocorreu algum erro ao criar o usuário: [mensagem do erro]."
     }
  **/
 

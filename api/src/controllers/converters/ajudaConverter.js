@@ -1,12 +1,31 @@
 exports.convertToAjudaDTO = (ajuda) => {
-  return {};
+  console.log(ajuda)
+  if (ajuda.help_id) {
+    return {
+      id: ajuda.help_id,
+      title: ajuda.title ? ajuda.title : null,
+      description: ajuda.description ? ajuda.description : null,
+      userId: ajuda.user_id ? ajuda.user_id : null,
+      allowPhoneNumber: ajuda.allow_phone_number === null ? null : convertBooleanMySQLFormat(ajuda.allow_phone_number),
+      professorId: ajuda.professor_id ? ajuda.professor_id : null,
+      languageId: ajuda.language_id ? ajuda.language_id : null,
+    };
+  }
+
+  return {
+    title: ajuda.title ? ajuda.title : null,
+    description: ajuda.description ? ajuda.description : null,
+    userId: ajuda.user_id ? ajuda.user_id : null,
+    allowPhoneNumber: ajuda.allow_phone_number === null ? null : convertBooleanMySQLFormat(ajuda.allow_phone_number),
+    professorId: ajuda.professor_id ? ajuda.professor_id : null,
+    languageId: ajuda.language_id ? ajuda.language_id : null,
+  };
 };
 
 exports.convertToAjuda = (ajudaDTO) => {
-  
   if (ajudaDTO.id) {
     return {
-      id: ajudaDTO.id,
+      help_id: ajudaDTO.id,
       title: ajudaDTO.title,
       description: ajudaDTO.description,
       user_id: ajudaDTO.userId,
@@ -15,7 +34,7 @@ exports.convertToAjuda = (ajudaDTO) => {
       language_id: ajudaDTO.languageId,
     };
   }
-  
+
   return {
     title: ajudaDTO.title,
     description: ajudaDTO.description,
@@ -24,4 +43,12 @@ exports.convertToAjuda = (ajudaDTO) => {
     professor_id: ajudaDTO.professorId ? ajudaDTO.professorId : null,
     language_id: ajudaDTO.languageId,
   };
+};
+
+convertBooleanMySQLFormat = (value) => {
+  if (value === 0) {
+    return false;
+  }
+
+  return true;
 };

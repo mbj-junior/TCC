@@ -1,2 +1,2 @@
-import ListaDeCategorias from "./ListaDeLinguagem";
-export default ListaDeCategorias;
+import ListaDeLinguagem from "./ListaDeLinguagem";
+export default ListaDeLinguagem;

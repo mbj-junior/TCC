@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import ListaDeNotas from "./ListaDePedidos";
-import FormularioCadastro from "./FormularioPedido";
-import ListaDeCategorias from "./ListaDeLinguagem";
+import FormularioPedido from "./FormularioPedido";
+import ListaDeLinguagem from "./ListaDeLinguagem";
 // import "../../assets/index.css";
 // import "../../assets/App.css";
 import ArrayDeNotas from "../../data/Notas";
@@ -20,15 +20,15 @@ class HomeComponent extends Component {
     return (
       <Container component="article" maxWidth="sm">
         <Typography variant="h4" component="h1" align="center">
-          Formulário de cadastro
+          Formulário de pedido
         </Typography>
 
         <main className="conteudo-principal">
-          <FormularioCadastro
+          <FormularioPedido
             categorias={this.categorias}
             criarNota={this.notas.adicionarNota.bind(this.notas)}
           />
-          <ListaDeCategorias
+          <ListaDeLinguagem
             adicionarCategoria={this.categorias.adicionarCategoria.bind(
               this.categorias
             )}

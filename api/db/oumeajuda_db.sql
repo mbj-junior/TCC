@@ -41,6 +41,11 @@ FOREIGN KEY (professor_id) REFERENCES user (user_id),
 FOREIGN KEY (language_id) REFERENCES language (language_id)
 );
 
+INSERT INTO oumeajuda_db.help (title, description, user_id, allow_phone_number, professor_id, language_id) VALUES ('titulo1', 'description1', 1, 0, null, 1);
+INSERT INTO oumeajuda_db.help (title, description, user_id, allow_phone_number, professor_id, language_id) VALUES ('titulo2', 'description2', 1, 0, null, 1);
+INSERT INTO oumeajuda_db.help (title, description, user_id, allow_phone_number, professor_id, language_id) VALUES ('titulo3', 'description3', 1, 0, null, 1);
+
+
 CREATE TABLE IF NOT EXISTS login(
 user_id INT,
 email VARCHAR(100) NOT NULL,

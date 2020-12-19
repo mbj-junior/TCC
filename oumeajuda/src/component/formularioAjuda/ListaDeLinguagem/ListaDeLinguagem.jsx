@@ -1,8 +1,7 @@
 import React, { Component } from "react";
-// import "./estilo.css";
 import {  TextField } from "@material-ui/core";
 
-class ListaDeCategorias extends Component {
+class ListaDeLinguagem extends Component {
   constructor() {
     super();
     this.state = { categorias: [] };
@@ -40,7 +39,7 @@ class ListaDeCategorias extends Component {
           })}
         </ul>
 
-         <TextField
+         {/* <TextField
           id="titulo"
           variant="outlined"
           fullWidth
@@ -48,10 +47,10 @@ class ListaDeCategorias extends Component {
           className="lista-categorias_input"
           placeholder="Adicionar Linguagem"
           onKeyUp={this._handleEventoInput.bind(this)}
-        />
+        /> */}
       </section>
     );
   }
 }
 
-export default ListaDeCategorias;
+export default ListaDeLinguagem;

@@ -1,5 +1,9 @@
 const linguagemModel = require("../models/linguagemModel");
 const dbConnection = require("../config/dbConnection");
+const {
+  converterToLinguagem,
+  convertToLinguagemDTO
+} = require("./converters/linguagemConverter");
 
 exports.linguagensListar = (req, res, next) => {
   console.log("marcio acessou");
@@ -8,10 +12,12 @@ exports.linguagensListar = (req, res, next) => {
 
   linguagemModel.getLinguagens(connection, function (err, results) {
     if (!err) {
-      if (results) {
+      if (results[0]) {
         res.status(200).json({
           code: "OK",
-          linguagens: results,
+          linguagens: results.map(element => {
+            return convertToLinguagemDTO(element)
+          }),
           message: "Linguagens cadastradas.",
         });
       } else {
@@ -25,7 +31,7 @@ exports.linguagensListar = (req, res, next) => {
       res.status(500).send({
         code: "ERROR",
         linguagens: null,
-        message: "Ocorreu algum erro ao buscar as linguagens.",
+        message: "Ocorreu algum erro ao buscar as linguagens: ["+ err.message +"].",
       });
     }
   });
@@ -44,7 +50,7 @@ exports.linguagemListar = (req, res, next) => {
         if (results[0]) {
           res.status(200).json({
             code: "OK",
-            linguagens: results[0],
+            linguagens: convertToLinguagemDTO(results[0]),
             message: "Linguagem buscada.",
           });
         } else {
@@ -58,7 +64,7 @@ exports.linguagemListar = (req, res, next) => {
         res.status(500).send({
           code: "ERROR",
           linguagens: null,
-          message: "Ocorreu algum erro ao buscar a linguagem.",
+          message: "Ocorreu algum erro ao buscar a linguagem: ["+ err.message +"].",
         });
       }
     }
@@ -66,9 +72,7 @@ exports.linguagemListar = (req, res, next) => {
 };
 
 exports.linguagemSalvar = (req, res, next) => {
-  let linguagem = {
-    language_name: req.body.language_name,
-  };
+  let linguagem = converterToLinguagem(req.body);
 
   const connection = dbConnection();
 
@@ -76,14 +80,14 @@ exports.linguagemSalvar = (req, res, next) => {
     if (!err) {
       res.status(201).json({
         code: "OK",
-        linguagens: { user_id: results.insertId },
+        linguagens: convertToLinguagemDTO({ language_id: results.insertId }),
         message: "Linguagem criada.",
       });
     } else {
       res.status(500).send({
         code: "ERROR",
         linguagens: null,
-        message: "Ocorreu algum erro ao salvar a linguagem.",
+        message: "Ocorreu algum erro ao salvar a linguagem: ["+ err.message +"].",
       });
     }
   });

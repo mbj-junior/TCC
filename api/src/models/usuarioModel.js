@@ -17,11 +17,10 @@ module.exports = {
     connection.query(sql, usuario, callback);
   },
 
-  // Note: Não será implementado
-  // changeUsuario: function (connection, usuario, callback) {
-  //   let sql = "update user set ? where user_id = " + usuario.usuarioId;
-  //   connection.query(sql, usuario, callback);
-  // },
+  changeUsuario: function (connection, usuario, callback) {
+    let sql = "update user set ? where user_id = " + usuario.user_id;
+    connection.query(sql, usuario, callback);
+  },
 
 
   // Note: Não será implementado

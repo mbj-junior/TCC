@@ -11,10 +11,12 @@ exports.ajudasListar = (req, res, next) => {
 
   ajudaModel.getAjudas(connection, function (err, results) {
     if (!err) {
-      if (results) {
+      if (results[0]) {
         res.status(200).json({
           code: "OK",
-          ajudas: results,
+          ajudas: results.map(element => {
+            return convertToAjudaDTO(element)
+          }),
           message: "Ajudas cadastradas.",
         });
       } else {
@@ -28,7 +30,7 @@ exports.ajudasListar = (req, res, next) => {
       res.status(500).send({
         code: "ERROR",
         ajudas: null,
-        message: "Ocorreu algum erro ao buscar as ajudas.",
+        message: "Ocorreu algum erro ao buscar as ajudas: ["+ err.message +"].",
       });
     }
   });
@@ -47,7 +49,9 @@ exports.ajudasUsuarioListar = (req, res, next) => {
         if (results) {
           res.status(200).json({
             code: "OK",
-            ajudas: results,
+            ajudas: results.map(element => {
+              return convertToAjudaDTO(element)
+            }),
             message: "Ajudas cadastradas para o usuário.",
           });
         } else {
@@ -61,7 +65,7 @@ exports.ajudasUsuarioListar = (req, res, next) => {
         res.status(500).send({
           code: "ERROR",
           ajudas: null,
-          message: "Ocorreu algum erro ao buscar as ajudas do o usuário.",
+          message: "Ocorreu algum erro ao buscar as ajudas do o usuário: ["+ err.message +"].",
         });
       }
     }
@@ -75,12 +79,11 @@ exports.ajudaListar = (req, res, next) => {
 
   ajudaModel.getAjudaById(connection, ajudaId, function (err, results) {
     if (!err) {
-      if (results) {
-        console.log(results.isEmpty);
+      if (results[0]) {
         res.status(200).json({
           code: "OK",
-          ajudas: results,
-          message: "Ajuda cadastrada.",
+          ajudas: convertToAjudaDTO(results[0]),
+          message: "Ajuda buscada.",
         });
       } else {
         res.status(404).json({
@@ -93,7 +96,7 @@ exports.ajudaListar = (req, res, next) => {
       res.status(500).send({
         code: "ERROR",
         ajudas: null,
-        message: "Ocorreu algum erro ao buscar a ajuda.",
+        message: "Ocorreu algum erro ao buscar a ajuda: ["+ err.message +"].",
       });
     }
   });
@@ -101,14 +104,13 @@ exports.ajudaListar = (req, res, next) => {
 
 exports.ajudaSalvar = (req, res, next) => {
   let ajuda = convertToAjuda(req.body);
-  console.log(ajuda);
   const connection = dbConnection();
 
   ajudaModel.saveAjuda(connection, ajuda, function (err, results) {
     if (!err) {
       res.status(201).json({
         code: "OK",
-        ajudas: { ajudaId: results.insertId },
+        ajudas: convertToAjudaDTO({ help_id: results.insertId }),
         message: "Ajuda cadastrada.",
       });
     } else {
@@ -116,7 +118,7 @@ exports.ajudaSalvar = (req, res, next) => {
         code: "ERROR",
         ajudas: null,
         message:
-          "Ocorreu algum erro ao cadastrar a ajuda: [" + err.message + "].",
+          "Ocorreu algum erro ao cadastrar a ajuda: ["+ err.message +"].",
       });
     }
   });
@@ -138,7 +140,7 @@ exports.ajudaDeletar = (req, res, next) => {
       res.status(500).send({
         code: "ERROR",
         ajudas: null,
-        message: "Ocorreu algum erro ao deletar a ajuda.",
+        message: "Ocorreu algum erro ao deletar a ajuda: ["+ err.message +"].",
       });
     }
   });
