@@ -1,5 +1,4 @@
 exports.convertToAjudaDTO = (ajuda) => {
-  console.log(ajuda)
   if (ajuda.help_id) {
     return {
       id: ajuda.help_id,

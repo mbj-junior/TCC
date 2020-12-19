@@ -5,11 +5,11 @@ import api from "./api";
 
 class App extends Component {
 
-  async componentDidMount(){
-    const response = await api.get("/linguagem/1")
+  // async componentDidMount(){
+  //   const response = await api.get("/linguagem/1")
 
-    console.log(response.data)
-  }
+  //   console.log(response.data)
+  // }
 
   render() {
     return (

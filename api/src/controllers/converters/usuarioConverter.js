@@ -1,5 +1,4 @@
 exports.convertToUsuarioDTO = (usuario) => {
-    console.log(usuario)
     if (usuario.user_id) {
       return {
         id: usuario.user_id,

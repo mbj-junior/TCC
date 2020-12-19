@@ -6,7 +6,6 @@ const {
 } = require("./converters/ajudaConverter");
 
 exports.ajudasListar = (req, res, next) => {
-  console.log("geral");
   const connection = dbConnection();
 
   ajudaModel.getAjudas(connection, function (err, results) {

@@ -6,8 +6,6 @@ const {
 } = require("./converters/linguagemConverter");
 
 exports.linguagensListar = (req, res, next) => {
-  console.log("marcio acessou");
-
   const connection = dbConnection();
 
   linguagemModel.getLinguagens(connection, function (err, results) {
