@@ -68,23 +68,25 @@ function DadosUsuario({ aoEnviar }) {
         margin="normal"
         fullWidth
       />
-      <br></br>
-      <Button
-        type="submit"
-        action={conectar()}
-        variant="contained"
-        color="primary"
-        fullWidth
-      >
-        LOGIN
-      </Button>
-      <br></br>
-      <br></br>
-      <Button type="submit" variant="contained" color="primary" fullWidth>
+ 
+      <Button type="button" variant="contained" color="primary" fullWidth>
         CADASTRO
       </Button>
     </form>
+
+    
   );
 }
 
 export default DadosUsuario;
+
+
+
+      // {/* <Button
+      //   type="submit"
+      //   variant="contained"
+      //   color="primary"
+      //   fullWidth
+      // >
+      //   LOGIN
+      // </Button> */}

@@ -5,11 +5,7 @@ import { Container, Typography } from "@material-ui/core";
 import { useAsync } from "react-async";
 
 function MuralPedidos() {
-  // const { data, error } = useAsync({ promiseFn: listarLinguagens()})
-  // let nome = data.linguagens
-  // console.log(nome[0].language_name)
-
-  // console.log(listarLinguagens())
+  const { data, error } = useAsync({ promiseFn: listarLinguagens });
 
   return (
     <Container component="article" maxWidth="sm">
@@ -23,7 +19,12 @@ function MuralPedidos() {
           estão dispostos a ajudar.{" "}
         </p>
 
-        {/* {nome[0].language_name} */}
+        <p>{data ? data.linguagens[0].languageName : ""}</p>
+
+        {data &&
+          data.linguagens.map((linguagem) => <p>{linguagem.languageName}</p>)}
+
+          
       </Typography>
     </Container>
   );
