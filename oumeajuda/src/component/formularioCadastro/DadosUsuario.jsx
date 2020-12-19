@@ -49,8 +49,14 @@ function DadosUsuario({ aoEnviar }) {
         margin="normal"
         fullWidth
       />
+      <br></br>
+      <Button type="submit" variant="contained" color="primary" fullWidth >
+        LOGIN
+      </Button>
+      <br></br>
+      <br></br>
       <Button type="submit" variant="contained" color="primary" fullWidth>
-        Próximo
+        CADASTRO
       </Button>
     </form>
   );

@@ -1,20 +1,17 @@
 import React from "react";
 import "fontsource-roboto";
 import { Container, Typography } from "@material-ui/core";
+
 import { useAsync } from 'react-async';
 
 
-
-  const usuarioResponse = () =>
-  fetch("http://10.0.0.5:7000/usuario/2")
-    .then(res => (res.ok ? res : Promise.reject(res)))
-    .then(res => res.json())
-
 function MuralPedidos() {
   
-  const { data, error } = useAsync({ promiseFn: usuarioResponse})
-  // let nome = data.usuario.name
-  // console.log(nome)
+  const { data, error } = useAsync({ promiseFn: listarLinguagens()})
+  // let nome = data.linguagens
+  // console.log(nome[0].language_name)
+
+  // console.log(listarLinguagens())
 
 
   return (
@@ -27,13 +24,14 @@ function MuralPedidos() {
         Subititulo
       </Typography>
       <Typography variant="body1" component="h1" align="justify">
+        {/* {nome[0].language_name} */}
       </Typography>
     </Container>
   );
 }
 
-const listarClientes = async () => {
-  return await fetch("http://10.0.0.5:7000/usuario/1", {
+const listarLinguagens = async () => {
+  return await fetch("http://localhost:7000/linguagens", {
     method: "get"
   })
     .then(resp => {

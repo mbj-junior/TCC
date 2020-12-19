@@ -1,13 +1,34 @@
 // import "./App.css";
 import "fontsource-roboto";
+import React, { Component } from "react";
 import Menu from "./component/Menu";
+import api from "./api";
 
-function App() {
-  return (
-    <>
-      <Menu></Menu>
-    </>
-  );
+class App extends Component {
+
+  async componentDidMount(){
+    const response = await api.get("/linguagem/1")
+
+    console.log(response.data)
+  }
+
+  render() {
+    return (
+      <>
+        <div>oi</div>
+        <Menu></Menu>
+      </>
+    );
+  }
 }
+
+// function App() {
+//   return (
+//     <>
+//       <div>oi</div>
+//       <Menu></Menu>
+//     </>
+//   );
+// }
 
 export default App;

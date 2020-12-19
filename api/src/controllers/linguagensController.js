@@ -1,20 +1,34 @@
 const linguagemModel = require("../models/linguagemModel");
-const dbConnection = require("../config/dbConnection")
+const dbConnection = require("../config/dbConnection");
 
 exports.linguagensListar = (req, res, next) => {
+  console.log("marcio acessou");
+
   const connection = dbConnection();
 
   linguagemModel.getLinguagens(connection, function (err, results) {
     if (!err) {
-      console.log(results)
-      res.status(200).json(results);
+      if (results) {
+        res.status(200).json({
+          code: "OK",
+          linguagens: results,
+          message: "Linguagens cadastradas.",
+        });
+      } else {
+        res.status(404).json({
+          code: "EMPTY",
+          linguagens: null,
+          message: "Não existem linguagens cadastradas.",
+        });
+      }
     } else {
-      console.log(err)
-      res.status(404).send("Linguagens não cadastradas!");
+      res.status(500).send({
+        code: "ERROR",
+        linguagens: null,
+        message: "Ocorreu algum erro ao buscar as linguagens.",
+      });
     }
   });
-
-  // res.status(200).json({ message: "linguagens" }); //Comentar qdo for testar com banco
 };
 
 exports.linguagemListar = (req, res, next) => {
@@ -27,27 +41,50 @@ exports.linguagemListar = (req, res, next) => {
     linguagemId,
     function (err, results) {
       if (!err) {
-        res.status(200).json(results);
+        if (results[0]) {
+          res.status(200).json({
+            code: "OK",
+            linguagens: results[0],
+            message: "Linguagem buscada.",
+          });
+        } else {
+          res.status(404).json({
+            code: "EMPTY",
+            linguagens: null,
+            message: "A linguagem buscada não existe.",
+          });
+        }
       } else {
-        res.status(404).send("Essa linguagem não existe!");
+        res.status(500).send({
+          code: "ERROR",
+          linguagens: null,
+          message: "Ocorreu algum erro ao buscar a linguagem.",
+        });
       }
     }
   );
-
-  // res.status(200).json({ id: linguagemId, message: " 1 linguagem" }); //Comentar qdo for testar com banco
 };
 
 exports.linguagemSalvar = (req, res, next) => {
-  let linguagem = req.body;
+  let linguagem = {
+    language_name: req.body.language_name,
+  };
+
   const connection = dbConnection();
 
   linguagemModel.saveLinguagem(connection, linguagem, function (err, results) {
     if (!err) {
-      res.status(201).json(results);
+      res.status(201).json({
+        code: "OK",
+        linguagens: { user_id: results.insertId },
+        message: "Linguagem criada.",
+      });
     } else {
-      res.status(500).send("Aconteceu algum erro ao criar a linguagem!");
+      res.status(500).send({
+        code: "ERROR",
+        linguagens: null,
+        message: "Ocorreu algum erro ao salvar a linguagem.",
+      });
     }
   });
-
-  // res.status(200).json({ message: "linguagem criada -- log provisório" }); //Comentar qdo for testar com banco
 };

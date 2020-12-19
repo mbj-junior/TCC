@@ -17,16 +17,25 @@ Code: 200
             "phone": 12987456321,
             "created_at": "2020-12-18T01:28:20.000Z"
         },
-        "message": "Usuario criado."
+        "message": "Usuario buscado."
     }
 
 Se usuário não existir:
-Code: 200
+Code: 404
     {
         "code": "EMPTY",
         "usuario": null,
         "message": "Esse usuário não existe."
     }
+
+Se ocorrer erro no banco:
+Code: 500
+    {
+        "code": "ERROR",
+        "usuario": null,
+        "message": "Ocorreu algum erro ao buscar o usuário."
+    }
+
  */
 
 router.post("/", controller.usuarioSalvar);

@@ -3,20 +3,20 @@ const dbConnection = require("../config/dbConnection");
 
 exports.usuarioListar = (req, res, next) => {
   let usuarioId = req.params.id;
+  console.log("marcio acessou")
 
   const connection = dbConnection();
 
   usuarioModel.getUsuarioById(connection, usuarioId, function (err, results) {
     if (!err) {
-
       if(results[0]){
         res.status(200).json({
           usuario: results[0],
-          message: "Usuario criado.",
+          message: "Usuario buscado.",
         });
       }
       else{
-        res.status(200).json({
+        res.status(404).json({
           code: "EMPTY",     
           usuario: null,  
           message: "Esse usuário não existe.",
@@ -24,10 +24,10 @@ exports.usuarioListar = (req, res, next) => {
       }
       
     } else {
-      res.status(404).send({
+      res.status(500).send({
         code: "ERROR",
         usuario: null,
-        message: "Ocorreu algum erro ao criar o usuário.",
+        message: "Ocorreu algum erro ao buscar o usuário.",
       });
     }
   });
