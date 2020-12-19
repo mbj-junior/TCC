@@ -1,4 +1,3 @@
-// import "./App.css";
 import "fontsource-roboto";
 import React, { Component } from "react";
 import Menu from "./component/Menu";
@@ -23,14 +22,5 @@ class App extends Component {
     );
   }
 }
-
-// function App() {
-//   return (
-//     <>
-//       <div>oi</div>
-//       <Menu></Menu>
-//     </>
-//   );
-// }
 
 export default App;

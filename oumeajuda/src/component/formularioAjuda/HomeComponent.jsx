@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import ListaDeNotas from "./ListaDePedidos";
 import FormularioPedido from "./FormularioPedido";
 import ListaDeLinguagem from "./ListaDeLinguagem";
-// import "../../assets/index.css";
-// import "../../assets/App.css";
 import ArrayDeNotas from "../../data/Notas";
 import Categorias from "../../data/Categorias";
 import { Container, Typography } from "@material-ui/core";
