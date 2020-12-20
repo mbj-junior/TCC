@@ -1,15 +1,17 @@
 import { Button, TextField } from "@material-ui/core";
-import React, { useState, useContext } from "react";
+import React, { useContext, useState } from "react";
+
 import ValidacoesCadastro from "../../contexts/ValidacoesCadastro";
 import useErros from "../../hooks/useErros";
 
-const conectar = async () => {
+const conectar = async (body) => {
   return await fetch("http://localhost:7000/login/new", {
-    method: "post",
-    body: JSON.stringify({
-      email: "pagina@react.com",
-      psw: "1234",
-    }),
+    method: "POST",
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(body),
   })
     .then((resp) => {
       return resp.json();
@@ -19,13 +21,14 @@ const conectar = async () => {
     });
 };
 
-let _criarLogin = () => {
-  conectar();
+let _criarLogin = (login) => {
+  return conectar(login);
 };
 
 function DadosUsuario({ aoEnviar }) {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
+  const [usuarioId, setUsuarioId] = useState("");
   const validacoes = useContext(ValidacoesCadastro);
   const [erros, validarCampos, possoEnviar] = useErros(validacoes);
 
@@ -33,8 +36,15 @@ function DadosUsuario({ aoEnviar }) {
     <form
       onSubmit={(event) => {
         event.preventDefault();
+
         if (possoEnviar()) {
-          aoEnviar({ email, senha });
+          let response = _criarLogin({ email, senha });
+          // if(response){
+            // setUsuarioId(response.usuario[0].id)
+            // console.log(usuarioId)
+          //   aoEnviar({...{ email, senha }}, ...response.usuario) ;
+          // }
+          aoEnviar({ email, senha })
         }
       }}
     >
@@ -69,7 +79,7 @@ function DadosUsuario({ aoEnviar }) {
         fullWidth
       />
  
-      <Button type="button" variant="contained" color="primary" fullWidth>
+      <Button type="submit" variant="contained" color="primary" fullWidth>
         CADASTRO
       </Button>
     </form>

@@ -40,8 +40,8 @@ const useStyles = makeStyles({
 //   },
 // }));
 
-export default function Pedido({ajuda, linguagens}) {
-  const [open, setOpen] = React.useState(false);
+export default function Pedido({ajuda, linguagensMap}) {
+  // const [open, setOpen] = React.useState(false);
 
   // const handleOpen = () => {
   //   setOpen(true);
@@ -54,7 +54,8 @@ export default function Pedido({ajuda, linguagens}) {
 
   // const classesModal = useStylesModal();
 
-
+  console.log(ajuda)
+  
   return (
     <Card className={classes.root} variant="outlined">
         <CardContent>
@@ -62,7 +63,7 @@ export default function Pedido({ajuda, linguagens}) {
                 Pedido de ajuda
             </Typography>
             <Typography variant="h5" component="h2">
-                {linguagens.get(ajuda.languageId)}
+                {linguagensMap.get(ajuda.languageId)}
             </Typography>
             <Typography className={classes.pos} color="textSecondary">
                 {ajuda.createdAt}

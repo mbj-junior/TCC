@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+
 import { ReactComponent as DeleteSVG } from "../../../assets/img/delete.svg";
 import { Grid } from "@material-ui/core";
 

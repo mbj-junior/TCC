@@ -84,7 +84,7 @@ class  MuralPedidos extends Component {
         <div>
         {ajudasGeral.map((nota, index) => {
             return (
-              <Pedido ajuda={nota} linguagens={linguagens}></Pedido>
+              <Pedido ajuda={nota} linguagensMap={linguagens}></Pedido>
             );
           })}
         </div>
@@ -102,19 +102,6 @@ professorId: null
 title: "titulo"
 userId: 1
 */
-
-
-const listarLinguagens = async () => {
-  return await fetch("http://localhost:7000/linguagens", {
-    method: "get",
-  })
-    .then((resp) => {
-      return resp.json();
-    })
-    .then((json) => {
-      return json;
-    });
-};
 
 export default MuralPedidos;
 

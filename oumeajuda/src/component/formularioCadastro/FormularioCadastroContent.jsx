@@ -1,12 +1,14 @@
-// import "../../App.css";
-import FormularioCadastro from "./FormularioCadastro";
-import { Container, Typography } from "@material-ui/core";
 import "fontsource-roboto";
+
+import { Container, Typography } from "@material-ui/core";
 import {
   validarCelular,
-  validarSenha,
   validarDigitos,
+  validarSenha,
 } from "../../models/cadastro";
+
+// import "../../App.css";
+import FormularioCadastro from "./FormularioCadastro";
 import ValidacoesCadastro from "../../contexts/ValidacoesCadastro";
 
 function FormularioCadastroContent() {
@@ -23,13 +25,10 @@ function FormularioCadastroContent() {
           sobrenome: validarDigitos,
         }}
       >
-        <FormularioCadastro aoEnviar={aoEnviarForm} />
+        <FormularioCadastro />
       </ValidacoesCadastro.Provider>
     </Container>
   );
-}
-
-function aoEnviarForm() {
 }
 
 export default FormularioCadastroContent;

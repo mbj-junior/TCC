@@ -11,38 +11,18 @@ class FormularioPedido extends Component {
     super(props);
     this.titulo = "";
     this.texto = "";
-    this.categoria = "Linguagem";
+    this.linguagemId = "";
     this.contato = "";
-    this.state = { 
-      categorias: [],
-      error: null,
-      linguagens: [] 
+    this.state = {
+      linguagens: this.props.linguagens,
+      linguagensMap: this.props.linguagensMap,
+      categorias: []
     };
     this._novasCategorias = this._novasCategorias.bind(this);
   }
-
-  componentDidMount() {
+  
+  componentDidMount(props) {
     this.props.categorias.inscrever(this._novasCategorias);
-
-    fetch("http://localhost:7000/linguagens")
-      .then(res => res.json())
-      .then(
-        (result) => {
-          
-          this.setState({
-            linguagens: result.linguagens
-          });
-          
-        },
-        // Nota: É importante lidar com os erros aqui
-        // em vez de um bloco catch() para não recebermos
-        // exceções de erros dos componentes.
-        (error) => {
-          this.setState({
-            error
-          });
-        }
-      )
   }
 
   componentWillUnmount() {
@@ -53,9 +33,9 @@ class FormularioPedido extends Component {
     this.setState({ ...this.state, categorias });
   }
 
-  _handlerMudancaCategoria(evento) {
+  _handlerMudancaLinguagem(evento) {
     evento.stopPropagation();
-    this.categoria = evento.target.value;
+    this.linguagemId = evento.target.value;
   }
 
   _handlerMudancaTitulo(evento) {
@@ -63,7 +43,7 @@ class FormularioPedido extends Component {
     this.titulo = evento.target.value;
   }
 
-  _handlerMudancaTexto(evento) {
+  _handlerMudancaDescricao(evento) {
     evento.stopPropagation();
     this.texto = evento.target.value;
   }
@@ -73,39 +53,60 @@ class FormularioPedido extends Component {
     this.contato = evento.target.value;
   }
 
-  _criarNota(evento) {
+  _criarAjuda(evento) {
     evento.preventDefault();
     evento.stopPropagation();
-    this.props.criarNota(this.titulo, this.texto, this.categoria, this.contato);
+
+    let ajudaBody = {
+      "title": this.titulo,
+      "description": this.texto,
+      "userId": 1,
+      "allowPhoneNumber": false,
+      "professorId": null,
+      "languageId": this.linguagemId
+    }
+    
+    postAjuda(ajudaBody).then(response => {
+      let ajudaCadastrada = response.ajudas;
+      this.setState({ ...this.state, ajudaCadastrada});
+      this.props.criarAjuda(ajudaCadastrada.title, ajudaCadastrada.description, this.linguagemId, this.contato, ajudaCadastrada.createdAt);
+    })
+
+    /*
+    allowPhoneNumber: false
+    createdAt: "20-12-2020 01:40:42"
+    description: "Finalize a configuração da sua loja no Portal do Parceiro para poder vender no iFood."
+    id: 65
+    languageId: 3
+    professorId: null
+    title: "thfdghgf"
+    userId: 1
+    */
+   
   }
 
   render() {
-    const { linguagens } = this.state;
 
+    const { linguagens } = this.state;
+    console.log(linguagens)
+    
     return (
-      <form className="form-cadastro" onSubmit={this._criarNota.bind(this)}>
-        <Select label="Age"
+
+      <form className="form-cadastro-ajuda" onSubmit={this._criarAjuda.bind(this)}>
+        <Select 
+          id="ling"
           variant="outlined"
           margin="normal"
+          placeholder="Selecione a linguagem"
+          required="true"
           fullWidth
-          onChange={this._handlerMudancaCategoria.bind(this)}
+          onChange={this._handlerMudancaLinguagem.bind(this)}
         >
-
-          {linguagens.map(linguagem => (
-            <MenuItem value={linguagem.languageName}>{linguagem.languageName}</MenuItem>
-          ))}
           
-
-          {this.state.categorias.map((categoria, index) => {
-            return (
-              <MenuItem value={categoria} key={index}>
-                {" "}
-                {categoria}{" "}
-              </MenuItem>
-            );
-          })}
+          {linguagens && linguagens.map(linguagem => (
+            <MenuItem value={linguagem.languageId}>{linguagem.languageName}</MenuItem>))}
         </Select>
-
+        
         <TextField
           id="titulo"
           label="Título"
@@ -117,16 +118,15 @@ class FormularioPedido extends Component {
           onChange={this._handlerMudancaTitulo.bind(this)}
         />
         
-
         <TextField
-          id="body"
+          id="description"
           label="Qual a sua dificuldade?"
           type="text"
           required
           fullWidth
           variant="outlined"
           margin="normal"
-          onChange={this._handlerMudancaTexto.bind(this)}
+          onChange={this._handlerMudancaDescricao.bind(this)}
         />
 
         <TextField
@@ -149,3 +149,20 @@ class FormularioPedido extends Component {
 }
 
 export default FormularioPedido;
+
+const postAjuda = async (body) => {  
+  return await fetch("http://localhost:7000/ajudas", {
+    method: "POST",
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(body),
+  })
+  .then((resp) => {
+    return resp.json();
+  })
+  .then((json) => {
+    return json;
+  });
+};

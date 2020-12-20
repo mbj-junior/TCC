@@ -3,56 +3,23 @@ import "fontsource-roboto";
 import { Container, Typography } from "@material-ui/core";
 import React, { Component } from "react";
 
-import ArrayDeNotas from "../../data/Notas";
+import ArrayDeAjudas from "../../data/Ajuda";
 import Categorias from "../../data/Categorias";
 import FormularioPedido from "./FormularioPedido";
-import ListaDeLinguagem from "./ListaDeLinguagem";
+import Linguagens from "../../data/Linguagens";
 import ListaDeNotas from "./ListaDePedidos";
 
 class HomeComponent extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.categorias = new Categorias();
-    this.notas = new ArrayDeNotas();
-    this.state = {linguagens: new Map()}
+    this.ajudas = new ArrayDeAjudas();
+    this.linguagens = new Linguagens()
+    this.linguagensProp = this.linguagens.getLinguagens.bind(this.linguagens)();
+    this.linguagensMapProp = this.linguagens.getLinguagensMap.bind(this.linguagens)();    
   }
 
-  
-  componentDidMount() {
-    
-      fetch("http://localhost:7000/linguagens")
-      .then(res => res.json())
-      .then(
-        (result) => {
-          console.log(result.linguagens)
-          let myMap = new Map();
-          
-          result.linguagens.forEach(
-            (linguagem) => myMap.set(linguagem.languageId, linguagem.languageName)
-          )
-
-          console.log(result.linguagens)
-          this.setState({
-            linguagens: myMap
-            // linguagens: result.linguagens
-          });
-          
-        },
-        // Nota: É importante lidar com os erros aqui
-        // em vez de um bloco catch() para não recebermos
-        // exceções de erros dos componentes.
-        (error) => {
-          this.setState({
-            error
-          });
-        }
-      )
-  }
-
-
-  render() {
-    const { linguagens } = this.state;
-
+  render() {   
     return (
       <Container component="article" maxWidth="sm">
         <Typography variant="h4" component="h1" align="center">
@@ -62,17 +29,22 @@ class HomeComponent extends Component {
         <main className="conteudo-principal">
           <FormularioPedido
             categorias={this.categorias}
-            criarNota={this.notas.adicionarNota.bind(this.notas)}
+            criarAjuda={this.ajudas.adicionarNota.bind(this.ajudas)}
+            linguagens={this.linguagensProp}
+            linguagensMap={this.linguagensMapProp}
           />
-          <ListaDeLinguagem
+          {/* <ListaDeLinguagem
             adicionarCategoria={this.categorias.adicionarCategoria.bind(
               this.categorias
             )}
             categorias={this.categorias}
-          />
+          /> */}
+          
           <ListaDeNotas
-            apagarNota={this.notas.apagarNotas.bind(this.notas)}
-            notas={this.notas}
+            apagarNota={this.ajudas.apagarNotas.bind(this.ajudas)}
+            notas={this.ajudas}
+            linguagens={this.linguagensProp}
+            linguagensMap={this.linguagensMapProp}
           />
         </main>
       </Container>

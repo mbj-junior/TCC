@@ -1,12 +1,14 @@
-import React, { Component } from "react";
-import CardPedido from "../CardPedido";
 import "./estilo.css";
-import { Grid, List} from "@material-ui/core";
 
+import { Grid, List } from "@material-ui/core";
+import React, { Component } from "react";
+
+import CardPedido from "../CardPedido";
+import Pedido from "../../muralPedidos/Pedido";
 
 class ListaDeNotas extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = { notas: [] };
     this._novasNotas = this._novasNotas.bind(this);
   }
@@ -24,26 +26,36 @@ class ListaDeNotas extends Component {
   }
 
   render() {
+    console.log(this.props)
+    let index = 0;
     return (
       <Grid className="lista-pedidos">
-
-        {this.state.notas.map((nota, index) => {
-          return (
-            <List className="lista-pedidos_item" key={index}>
-              <CardPedido
-                indice={index}
-                apagarNota={this.props.apagarNota}
-                titulo={nota.titulo}
-                ListItemText texto={nota.texto}
-                categoria={nota.categoria}
-                contato={nota.contato}
-              />
+        <List className="lista-pedidos_item" key={index}>
+          {this.state.notas.map((nota, index) => {
+            index++;
+            return (
+              <Pedido ajuda={nota} linguagensMap={this.props.linguagensMap}></Pedido>
+            )
+          })}
             </List>
-          );
-        })}
       </Grid> 
     );
   }
 }
 
 export default ListaDeNotas;
+
+/*
+  <Pedido ajuda={nota} linguagens={linguagens}></Pedido> 
+  <CardPedido
+    indice={index}
+    apagarNota={this.props.apagarNota}
+    titulo={nota.titulo}
+    ListItemText texto={nota.texto}
+    categoria={nota.categoria}
+    contato={nota.contato}>
+  </CardPedido>
+
+*/
+
+
