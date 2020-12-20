@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { ReactComponent as DeleteSVG } from "../../../assets/img/delete.svg";
 import { Grid } from "@material-ui/core";
 
-class CardPedido extends Component {
+class CardNota extends Component {
   apagar() {
     const indice = this.props.indice;
     this.props.apagarNota(indice);
@@ -25,4 +25,4 @@ class CardPedido extends Component {
   }
 }
 
-export default CardPedido;
+export default CardNota;
