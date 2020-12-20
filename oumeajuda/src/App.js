@@ -14,10 +14,7 @@ class App extends Component {
   render() {
     return (
       <>
-        <div>início</div>
         <Menu></Menu>
-        <div>fim</div>
-
       </>
     );
   }

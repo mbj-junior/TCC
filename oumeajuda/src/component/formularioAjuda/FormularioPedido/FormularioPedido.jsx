@@ -1,12 +1,10 @@
-import React, { Component } from "react";
 import {
   Button,
+  MenuItem,
   Select,
   TextField,
-  MenuItem,
 } from "@material-ui/core";
-
-
+import React, { Component } from "react";
 
 class FormularioPedido extends Component {
   constructor(props) {
@@ -15,12 +13,36 @@ class FormularioPedido extends Component {
     this.texto = "";
     this.categoria = "Linguagem";
     this.contato = "";
-    this.state = { categorias: [] };
+    this.state = { 
+      categorias: [],
+      error: null,
+      linguagens: [] 
+    };
     this._novasCategorias = this._novasCategorias.bind(this);
   }
 
   componentDidMount() {
     this.props.categorias.inscrever(this._novasCategorias);
+
+    fetch("http://localhost:7000/linguagens")
+      .then(res => res.json())
+      .then(
+        (result) => {
+          
+          this.setState({
+            linguagens: result.linguagens
+          });
+          
+        },
+        // Nota: É importante lidar com os erros aqui
+        // em vez de um bloco catch() para não recebermos
+        // exceções de erros dos componentes.
+        (error) => {
+          this.setState({
+            error
+          });
+        }
+      )
   }
 
   componentWillUnmount() {
@@ -58,6 +80,7 @@ class FormularioPedido extends Component {
   }
 
   render() {
+    const { linguagens } = this.state;
 
     return (
       <form className="form-cadastro" onSubmit={this._criarNota.bind(this)}>
@@ -66,12 +89,22 @@ class FormularioPedido extends Component {
           margin="normal"
           fullWidth
           onChange={this._handlerMudancaCategoria.bind(this)}
-        >  
-        
-        <MenuItem value={"Java"}>Java</MenuItem>
-        <MenuItem value={"React"}>React</MenuItem>
+        >
 
-        </Select> 
+          {linguagens.map(linguagem => (
+            <MenuItem value={linguagem.languageName}>{linguagem.languageName}</MenuItem>
+          ))}
+          
+
+          {this.state.categorias.map((categoria, index) => {
+            return (
+              <MenuItem value={categoria} key={index}>
+                {" "}
+                {categoria}{" "}
+              </MenuItem>
+            );
+          })}
+        </Select>
 
         <TextField
           id="titulo"
@@ -116,12 +149,3 @@ class FormularioPedido extends Component {
 }
 
 export default FormularioPedido;
-
-
-const listarLinguagens = async () => {
-  return await fetch("http://localhost:7000/linguagens", {
-    method: "get",
-  }).then(res => res.json())
-  .then(json => this.setState({ data: json }));
-};
-
