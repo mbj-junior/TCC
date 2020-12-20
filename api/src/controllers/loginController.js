@@ -1,6 +1,7 @@
 const loginModel = require("../models/loginModel");
 const usuarioModel = require("../models/usuarioModel");
 const { convertToUsuarioDTO } = require("./converters/usuarioConverter");
+const { convertToLogin } = require("./converters/loginConverter");
 const dbConnection = require("../config/dbConnection");
 
 exports.getLogin = (req, res, next) => {
@@ -44,8 +45,8 @@ exports.postLogin = (req, res, next) => {
 
     if (!err) {
       let id = results.insertId;
-      login = { ...login, ...{ user_id: id } };
-
+      login = convertToLogin({ ...login, ...{ userId: id } });
+      console.log(login)
       loginModel.saveLogin(connection, login, function (err, results) {
         if (!err) {
           //TODO descriptografar login.psw

@@ -4,6 +4,7 @@ import ValidacoesCadastro from "../../contexts/ValidacoesCadastro";
 import useErros from "../../hooks/useErros";
 
 function DadosPessoais({ aoEnviar }) {
+  console.log(aoEnviar)
   const [nome, setNome] = useState("");
   const [sobrenome, setSobrenome] = useState("");
   const [celular, setCelular] = useState("");
@@ -15,9 +16,9 @@ function DadosPessoais({ aoEnviar }) {
     <form
       onSubmit={(event) => {
         event.preventDefault();
-        if (possoEnviar()) {
-          aoEnviar({ nome, sobrenome, celular, promocoes });
-        }
+        // if (possoEnviar()) {
+        //   aoEnviar({ nome, sobrenome, celular, promocoes });
+        // }
       }}
     >
       <TextField

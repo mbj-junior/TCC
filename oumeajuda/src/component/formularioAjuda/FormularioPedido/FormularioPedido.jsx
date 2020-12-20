@@ -7,6 +7,7 @@ import {
 } from "@material-ui/core";
 
 
+
 class FormularioPedido extends Component {
   constructor(props) {
     super(props);
@@ -57,6 +58,7 @@ class FormularioPedido extends Component {
   }
 
   render() {
+
     return (
       <form className="form-cadastro" onSubmit={this._criarNota.bind(this)}>
         <Select label="Age"
@@ -64,19 +66,12 @@ class FormularioPedido extends Component {
           margin="normal"
           fullWidth
           onChange={this._handlerMudancaCategoria.bind(this)}
-        >
-          <MenuItem value={"Java"}>Java</MenuItem>
-          <MenuItem value={"React"}>React</MenuItem>
+        >  
+        
+        <MenuItem value={"Java"}>Java</MenuItem>
+        <MenuItem value={"React"}>React</MenuItem>
 
-          {this.state.categorias.map((categoria, index) => {
-            return (
-              <MenuItem value={categoria} key={index}>
-                {" "}
-                {categoria}{" "}
-              </MenuItem>
-            );
-          })}
-        </Select>
+        </Select> 
 
         <TextField
           id="titulo"
@@ -121,3 +116,12 @@ class FormularioPedido extends Component {
 }
 
 export default FormularioPedido;
+
+
+const listarLinguagens = async () => {
+  return await fetch("http://localhost:7000/linguagens", {
+    method: "get",
+  }).then(res => res.json())
+  .then(json => this.setState({ data: json }));
+};
+
