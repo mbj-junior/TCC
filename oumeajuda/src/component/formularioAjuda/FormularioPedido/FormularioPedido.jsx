@@ -34,6 +34,9 @@ class FormularioPedido extends Component {
           });
           
         },
+        // Nota: É importante lidar com os erros aqui
+        // em vez de um bloco catch() para não recebermos
+        // exceções de erros dos componentes.
         (error) => {
           this.setState({
             error

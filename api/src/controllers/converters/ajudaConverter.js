@@ -1,3 +1,5 @@
+const dateFormat = require('dateformat');
+
 exports.convertToAjudaDTO = (ajuda) => {
   if (ajuda.help_id) {
     return {
@@ -8,6 +10,7 @@ exports.convertToAjudaDTO = (ajuda) => {
       allowPhoneNumber: ajuda.allow_phone_number === null ? null : convertBooleanMySQLFormat(ajuda.allow_phone_number),
       professorId: ajuda.professor_id ? ajuda.professor_id : null,
       languageId: ajuda.language_id ? ajuda.language_id : null,
+      createdAt: ajuda.created_at ? dateFormat(ajuda.created_at, "dd-mm-yyyy hh:MM:ss") : null,
     };
   }
 
@@ -18,6 +21,7 @@ exports.convertToAjudaDTO = (ajuda) => {
     allowPhoneNumber: ajuda.allow_phone_number === null ? null : convertBooleanMySQLFormat(ajuda.allow_phone_number),
     professorId: ajuda.professor_id ? ajuda.professor_id : null,
     languageId: ajuda.language_id ? ajuda.language_id : null,
+    createdAt: ajuda.created_at ? dateFormat(ajuda.created_at, "dd-mm-yyyy hh:MM:ss") : null,
   };
 };
 

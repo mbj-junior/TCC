@@ -6,7 +6,6 @@ import DadosUsuario from "./DadosUsuario";
 function FormularioCadastro({ aoEnviar, validacoes }) {
   const [etapaAtual, setEtapaAtual] = useState(0);
   const [dadosColetados, setDados] = useState({});
-  
   useEffect(() => {
     if (etapaAtual === formularios.length - 1) {
       aoEnviar(dadosColetados);
@@ -20,9 +19,7 @@ function FormularioCadastro({ aoEnviar, validacoes }) {
   ];
 
   function coletarDados(dados) {
-
     setDados({ ...dadosColetados, ...dados });
-    console.log(dadosColetados)
     proximo();
   }
 

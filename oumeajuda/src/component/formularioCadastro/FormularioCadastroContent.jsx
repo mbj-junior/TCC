@@ -10,7 +10,6 @@ import {
 import ValidacoesCadastro from "../../contexts/ValidacoesCadastro";
 
 function FormularioCadastroContent() {
-  console.log("aqui")
   return (
     <Container component="article" maxWidth="sm">
       <Typography variant="h4" component="h1" align="center">

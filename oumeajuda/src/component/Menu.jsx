@@ -1,18 +1,21 @@
-import React from "react";
-import PropTypes from "prop-types";
 import {
-  makeStyles,
   AppBar,
-  Tabs,
-  Tab,
-  Typography,
   Box,
+  Tab,
+  Tabs,
+  Typography,
+  makeStyles,
 } from "@material-ui/core";
+
 import FormularioCadastroContent from "./formularioCadastro/FormularioCadastroContent";
 import HomeComponent from "./formularioAjuda/HomeComponent";
 import MuralPedidos from "./muralPedidos/MuralPedidos"
+import PropTypes from "prop-types";
+import React from "react";
 
 function TabPanel(props) {
+  console.log("construir")
+
   const { children, value, index, ...other } = props;
 
   return (
@@ -52,7 +55,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SimpleTabs() {
+export default function Menu() {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
@@ -76,9 +79,7 @@ export default function SimpleTabs() {
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
-
         <MuralPedidos></MuralPedidos>
-
       </TabPanel>
       <TabPanel value={value} index={1}>
         <HomeComponent></HomeComponent>

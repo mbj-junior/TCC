@@ -7,7 +7,6 @@ const {
 
 exports.usuarioListar = (req, res, next) => {
   let usuarioId = req.params.id;
-  console.log("marcio acessou");
 
   const connection = dbConnection();
 

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import CardNota from "../CardPedido";
+import CardPedido from "../CardPedido";
 import "./estilo.css";
-import { Grid, List, ListItemText } from "@material-ui/core";
+import { Grid, List} from "@material-ui/core";
 
 
 class ListaDeNotas extends Component {
@@ -30,7 +30,7 @@ class ListaDeNotas extends Component {
         {this.state.notas.map((nota, index) => {
           return (
             <List className="lista-pedidos_item" key={index}>
-              <CardNota
+              <CardPedido
                 indice={index}
                 apagarNota={this.props.apagarNota}
                 titulo={nota.titulo}

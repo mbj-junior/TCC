@@ -3,14 +3,13 @@ import React, { useState, useContext } from "react";
 import ValidacoesCadastro from "../../contexts/ValidacoesCadastro";
 import useErros from "../../hooks/useErros";
 
-const conectar = async (body) => {
+const conectar = async () => {
   return await fetch("http://localhost:7000/login/new", {
-    method: "POST",
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(body),
+    method: "post",
+    body: JSON.stringify({
+      email: "pagina@react.com",
+      psw: "1234",
+    }),
   })
     .then((resp) => {
       return resp.json();
@@ -20,14 +19,13 @@ const conectar = async (body) => {
     });
 };
 
-let _criarLogin = (login) => {
-  return conectar(login);
+let _criarLogin = () => {
+  conectar();
 };
 
 function DadosUsuario({ aoEnviar }) {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
-  const [usuarioId, setUsuarioId] = useState("");
   const validacoes = useContext(ValidacoesCadastro);
   const [erros, validarCampos, possoEnviar] = useErros(validacoes);
 
@@ -35,15 +33,8 @@ function DadosUsuario({ aoEnviar }) {
     <form
       onSubmit={(event) => {
         event.preventDefault();
-
         if (possoEnviar()) {
-          let response = _criarLogin({ email, senha });
-          // if(response){
-            // setUsuarioId(response.usuario[0].id)
-            // console.log(usuarioId)
-          //   aoEnviar({...{ email, senha }}, ...response.usuario) ;
-          // }
-          aoEnviar({ email, senha })
+          aoEnviar({ email, senha });
         }
       }}
     >
@@ -78,7 +69,7 @@ function DadosUsuario({ aoEnviar }) {
         fullWidth
       />
  
-      <Button type="submit" variant="contained" color="primary" fullWidth>
+      <Button type="button" variant="contained" color="primary" fullWidth>
         CADASTRO
       </Button>
     </form>
