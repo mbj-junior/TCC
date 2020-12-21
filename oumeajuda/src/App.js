@@ -1,26 +1,27 @@
 import "fontsource-roboto";
+
 import React, { Component } from "react";
+
 import Menu from "./component/Menu";
-import api from "./api";
+import { useCookies } from "react-cookie";
 
-class App extends Component {
+export default function App() {
+  const [cookies, setCookie] = useCookies(["user"]);
 
-  // async componentDidMount(){
-  //   const response = await api.get("/linguagem/1")
-
-  //   console.log(response.data)
-  // }
-
-  render() {
-    return (
-      <>
-        <div>início</div>
-        <Menu></Menu>
-        <div>fim</div>
-
-      </>
-    );
+  function handleCookie() {
+    setCookie("user", "gowtham", {
+      path: "/",
+    });
   }
-}
 
-export default App;
+  return (
+    <>
+      {/* <div className="App">
+      <h1>React cookies</h1>
+       {cookies.user && <p>{cookies.user}</p>}
+      <button onClick={handleCookie}>Set Cookie</button>
+    </div> */}
+      <Menu></Menu>
+    </>
+  );
+}

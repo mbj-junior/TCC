@@ -17,7 +17,7 @@ function FormularioCadastro({ aoEnviar, validacoes }) {
   const formularios = [
     <DadosUsuario aoEnviar={coletarDados} />,
     <DadosPessoais aoEnviar={coletarDados} />,
-    <Typography variant="h5">Obrigado pelo cadastro</Typography>,
+    <h5>Obrigado pelo cadastro</h5>,
   ];
 
   function coletarDados(dados) {

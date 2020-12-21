@@ -1,2 +1,3 @@
 # TCC
-Trabalho de conclusão - TADS IFSP
+Trabalho de conclusão de Curso
+Analise e Desenvolvimento de Sistemas

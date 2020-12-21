@@ -1,12 +1,16 @@
-import './index.css';
+import "./index.css";
 
-import App from './App';
-import React from 'react';
-import ReactDOM from 'react-dom';
+import App from "./App";
+import { CookiesProvider } from "react-cookie";
+import React from "react";
+import ReactDOM from "react-dom";
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+  <CookiesProvider>
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  </CookiesProvider>,
+
+  document.getElementById("root")
 );

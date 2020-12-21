@@ -8,10 +8,12 @@ import {
 } from "@material-ui/core";
 
 import FormularioCadastroContent from "./formularioCadastro/FormularioCadastroContent";
+import FormularioLoginContent from "./formularioLogin/FormularioLoginContent"
 import HomeComponent from "./formularioAjuda/HomeComponent";
 import MuralPedidos from "./muralPedidos/MuralPedidos"
 import PropTypes from "prop-types";
 import React from "react";
+import { useCookies } from "react-cookie";
 
 function TabPanel(props) {
   console.log("construir")
@@ -59,6 +61,15 @@ export default function Menu() {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
+
+  const [cookies, setCookie] = useCookies(["token"]);
+
+  function handleCookie(token) {
+    setCookie("token", token, {
+      path: "/",
+    });
+  }
+  
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -75,17 +86,21 @@ export default function Menu() {
         >
           <Tab label="MURAL DE PEDIDOS" {...a11yProps(0)} />
           <Tab label="OU ME AJUDA" {...a11yProps(1)} />
-          <Tab label="CADASTRO" {...a11yProps(2)} />
+          <Tab label="CADASTRE-SE" {...a11yProps(2)} selected="false"/>
+          <Tab label="ENTRAR" {...a11yProps(3)} />
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
         <MuralPedidos></MuralPedidos>
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <HomeComponent></HomeComponent>
+        <HomeComponent cookies={cookies}></HomeComponent>
       </TabPanel>
       <TabPanel value={value} index={2}>
         <FormularioCadastroContent></FormularioCadastroContent>
+      </TabPanel>
+      <TabPanel value={value} index={3}>
+        <FormularioLoginContent></FormularioLoginContent>
       </TabPanel>
     </div>
   );

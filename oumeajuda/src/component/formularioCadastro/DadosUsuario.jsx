@@ -36,15 +36,9 @@ function DadosUsuario({ aoEnviar }) {
     <form
       onSubmit={(event) => {
         event.preventDefault();
-
         if (possoEnviar()) {
-          let response = _criarLogin({ email, senha });
-          // if(response){
-            // setUsuarioId(response.usuario[0].id)
-            // console.log(usuarioId)
-          //   aoEnviar({...{ email, senha }}, ...response.usuario) ;
-          // }
-          aoEnviar({ email, senha })
+          _criarLogin({ email, senha });
+          aoEnviar({ email, senha });
         }
       }}
     >

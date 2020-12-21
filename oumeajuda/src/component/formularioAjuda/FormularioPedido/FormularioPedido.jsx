@@ -7,6 +7,7 @@ import {
 import React, { Component } from "react";
 
 class FormularioPedido extends Component {
+
   constructor(props) {
     super(props);
     this.titulo = "";
@@ -14,14 +15,12 @@ class FormularioPedido extends Component {
     this.linguagemId = "";
     this.contato = "";
     this.state = {
-      linguagens: this.props.linguagens,
-      linguagensMap: this.props.linguagensMap,
       categorias: []
     };
     this._novasCategorias = this._novasCategorias.bind(this);
   }
   
-  componentDidMount(props) {
+  componentDidMount() {
     this.props.categorias.inscrever(this._novasCategorias);
   }
 
@@ -88,10 +87,8 @@ class FormularioPedido extends Component {
   render() {
 
     const { linguagens } = this.state;
-    console.log(linguagens)
-    
+  
     return (
-
       <form className="form-cadastro-ajuda" onSubmit={this._criarAjuda.bind(this)}>
         <Select 
           id="ling"
@@ -103,7 +100,7 @@ class FormularioPedido extends Component {
           onChange={this._handlerMudancaLinguagem.bind(this)}
         >
           
-          {linguagens && linguagens.map(linguagem => (
+          {this.props.linguagens && this.props.linguagens.map(linguagem => (
             <MenuItem value={linguagem.languageId}>{linguagem.languageName}</MenuItem>))}
         </Select>
         

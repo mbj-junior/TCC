@@ -3,29 +3,64 @@ const usuarioModel = require("../models/usuarioModel");
 const { convertToUsuarioDTO } = require("./converters/usuarioConverter");
 const { convertToLogin } = require("./converters/loginConverter");
 const dbConnection = require("../config/dbConnection");
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcrypt");
 
 exports.getLogin = (req, res, next) => {
-  //   let login = req.body; //{ email: "", psw: ""}
+  const { email, senha: psw } = req.body; //{ email: "", psw: ""}
 
-  //   const connection = dbConnection();
+  const connection = dbConnection();
 
-  //   loginModel.getLoginByUsuarioEmail(connection, login.email, function (err, results) {
-  //       if (!err) {
-  //         //TODO descriptografar
-  //         //comparar com o valor salvo no banco
-  //             //se for igual retornar
-  //             res.status(200).json({message: 'Logado com sucesso'});
+  loginModel.getLoginByUsuarioEmail(connection, email, function (err, results) {
+    if (err) {
+      res.status(500).send({
+        code: "ERROR",
+        usuario: null,
+        message: "Ocorreu algum erro realizar o login: [" + err.message + "].",
+      });
+    } else {
+      console.log(results);
+      if (!results[0]) {
+        return res.status(401).send({
+          code: "ERROR",
+          usuario: null,
+          message: "Email ou senha incorretos.",
+        });
+      }
+      console.log(psw);
+      isCorrectPassword(psw, results[0].psw, function (err, same) {
+        if (err) {
+          return res.status(500).send({
+            code: "ERROR",
+            usuario: null,
+            message:
+              "Ocorreu algum erro realizar o login: [" + err.message + "].",
+          });
+        } else if (!same) {
+          return res.status(401).send({
+            code: "ERROR",
+            usuario: null,
+            message: "Email ou senha incorretos.",
+          });
+        }
+        
 
-  //             //se não for igual
-  //             res.status(200).json({message: 'Usuário ou senha incorretos'});
-
-  //       } else {
-  //         res.status(500).send("Aconteceu algum erro");
-  //       }
-  //     }
-  //   );
-
-  res.status(200).json({ message: "Login -- log provisório" }); //Comentar qdo for testar com banco
+        const payload = { email };
+        const token = jwt.sign(payload, "secret", {
+          expiresIn: "1h",
+          
+        });
+        
+        console.log(token)
+        return res.status(200).send({
+          code: "OK",
+          token: token,
+          message: "Logado com sucesso.",
+        })
+        
+      });
+    }
+  });
 };
 
 exports.postLogin = (req, res, next) => {
@@ -33,7 +68,6 @@ exports.postLogin = (req, res, next) => {
 
   const connection = dbConnection();
 
-  //criar um novo usuário vazio
   let usuario = {
     name: "new",
     lastname: "new",
@@ -42,27 +76,43 @@ exports.postLogin = (req, res, next) => {
   };
 
   usuarioModel.saveUsuario(connection, usuario, function (err, results) {
-
     if (!err) {
       let id = results.insertId;
-      login = convertToLogin({ ...login, ...{ userId: id } });
-      console.log(login)
-      loginModel.saveLogin(connection, login, function (err, results) {
-        if (!err) {
-          //TODO descriptografar login.psw
-          res.status(200).json({
-            code: "OK",
-            usuario: convertToUsuarioDTO({ user_id: id }),
-            message: "Logado criado sucesso.",
-          });
-        } else {
+
+      hashingPassword(login.senha, function (hashedPassword) {
+        if (!hashedPassword) {
           res.status(500).send({
             code: "ERROR",
             usuario: null,
             message:
-              "Ocorreu algum erro ao buscar o usuário: [" + err.message + "].",
+              "Ocorreu algum erro ao buscar o usuário: [" + err2.message + "].",
           });
         }
+
+        newLogin = convertToLogin({
+          email: login.email,
+          senha: hashedPassword,
+          userId: id,
+        });
+
+        loginModel.saveLogin(connection, newLogin, function (err, results) {
+          if (!err) {
+            res.status(200).json({
+              code: "OK",
+              usuario: convertToUsuarioDTO({ user_id: id }),
+              message: "Logado criado sucesso.",
+            });
+          } else {
+            res.status(500).send({
+              code: "ERROR",
+              usuario: null,
+              message:
+                "Ocorreu algum erro ao buscar o usuário: [" +
+                err.message +
+                "].",
+            });
+          }
+        });
       });
     } else {
       res.status(500).send({
@@ -72,5 +122,25 @@ exports.postLogin = (req, res, next) => {
           "Ocorreu algum erro ao criar o usuário: [" + err.message + "].",
       });
     }
+  });
+};
+
+isCorrectPassword = function (password, passwordSaved, callback) {
+  bcrypt.compare(password, passwordSaved, function (err, same) {
+    if (err) {
+      callback(err);
+    }
+    callback(err, same);
+  });
+};
+
+hashingPassword = function (psw, next) {
+  const saltRounds = 10;
+
+  bcrypt.hash(psw, saltRounds).then(function (hash) {
+    if (!hash) {
+      next();
+    }
+    next(hash);
   });
 };
