@@ -101,8 +101,10 @@ class FormularioPedido extends Component {
           onChange={this._handlerMudancaLinguagem.bind(this)}
         >
           
-          {this.props.linguagens && this.props.linguagens.map(linguagem => (
-            <MenuItem value={linguagem.languageId}>{linguagem.languageName}</MenuItem>))}
+        <MenuItem value={1}>JAVA</MenuItem>
+        <MenuItem value={2}>JAVA SCRIPT</MenuItem>
+        <MenuItem value={3}>NODE JS</MenuItem>
+        <MenuItem value={4}>KOTLIN</MenuItem>
         </Select>
         
         <TextField
