@@ -12,7 +12,7 @@ function FormularioCadastro({ aoEnviar, validacoes }) {
     if (etapaAtual === formularios.length - 1) {
       aoEnviar(dadosColetados);
     }
-  });
+  }, []);
 
   const formularios = [
     <DadosUsuario aoEnviar={coletarDados} />,

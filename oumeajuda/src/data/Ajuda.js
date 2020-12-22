@@ -36,6 +36,7 @@ class Pedido {
     this.description= texto;
     this.userId= 1;
     this.allowPhoneNumber= false;
+    this.phoneNumber= contato;
     this.professorId= null;
     this.languageId= categoria;
     this.createdAt= createdAt;

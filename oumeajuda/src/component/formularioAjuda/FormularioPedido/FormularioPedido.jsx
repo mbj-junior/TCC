@@ -7,7 +7,6 @@ import {
 import React, { Component } from "react";
 
 class FormularioPedido extends Component {
-
   constructor(props) {
     super(props);
     this.titulo = "";
@@ -61,6 +60,7 @@ class FormularioPedido extends Component {
       "description": this.texto,
       "userId": 1,
       "allowPhoneNumber": false,
+      "phoneNumber": this.contato,
       "professorId": null,
       "languageId": this.linguagemId
     }
@@ -86,8 +86,9 @@ class FormularioPedido extends Component {
 
   render() {
 
-    const { linguagens } = this.state;
-  
+    // const { linguagens } = this.state;
+    {/* {data && data.linguagens.map((linguagem) => <p>{linguagem.languageName}</p>)} */}
+
     return (
       <form className="form-cadastro-ajuda" onSubmit={this._criarAjuda.bind(this)}>
         <Select 
@@ -147,7 +148,8 @@ class FormularioPedido extends Component {
 
 export default FormularioPedido;
 
-const postAjuda = async (body) => {  
+const postAjuda = async (body) => { 
+  console.log(body) 
   return await fetch("http://localhost:7000/ajudas", {
     method: "POST",
     headers: {

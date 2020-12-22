@@ -43,11 +43,35 @@ TabPanel.propTypes = {
   value: PropTypes.any.isRequired,
 };
 
-function a11yProps(index) {
+function a11yProps(index, cookies) {
+  if(index === 2 && validarCookies(cookies)){
+    return {
+      id: `simple-tab-${index}`,
+      "aria-controls": `simple-tabpanel-${index}`,
+      disabled: true
+    };
+  }
+  
+  if(index === 1 && !validarCookies(cookies)){
+    return {
+      id: `simple-tab-${index}`,
+      "aria-controls": `simple-tabpanel-${index}`,
+      disabled: true
+    };
+  }
+  
   return {
     id: `simple-tab-${index}`,
     "aria-controls": `simple-tabpanel-${index}`,
   };
+}
+
+function validarCookies(cookies) {
+  if(cookies.token === "undefined"){
+    return false;
+  }
+
+  return true;
 }
 
 const useStyles = makeStyles((theme) => ({
@@ -60,15 +84,8 @@ const useStyles = makeStyles((theme) => ({
 export default function Menu() {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
+  const [cookies] = useCookies(["token"]);
 
-
-  const [cookies, setCookie] = useCookies(["token"]);
-
-  function handleCookie(token) {
-    setCookie("token", token, {
-      path: "/",
-    });
-  }
   
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -84,10 +101,10 @@ export default function Menu() {
           aria-label="string"
           indicatorColor="secondary"
         >
-          <Tab label="MURAL DE PEDIDOS" {...a11yProps(0)} />
-          <Tab label="OU ME AJUDA" {...a11yProps(1)} />
-          <Tab label="CADASTRE-SE" {...a11yProps(2)} selected="false"/>
-          <Tab label="ENTRAR" {...a11yProps(3)} />
+          <Tab label="MURAL DE PEDIDOS" {...a11yProps(0, cookies)} />
+          <Tab label="OU ME AJUDA" {...a11yProps(1, cookies)} />
+          <Tab label="CADASTRE-SE" {...a11yProps(2, cookies)}/>
+          <Tab label="ENTRAR" {...a11yProps(3, cookies)} />
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>

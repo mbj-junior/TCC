@@ -6,8 +6,6 @@ import React, { Component } from "react";
 import Pedido from "./Pedido";
 
 class  MuralPedidos extends Component {
-  // const { data, error } = useAsync({ promiseFn: listarLinguagens });
-
   constructor(){
     super();
     this.state = { 
@@ -23,15 +21,11 @@ class  MuralPedidos extends Component {
       .then(res => res.json())
       .then(
         (result) => {
-          // console.log(result.ajudas)
           this.setState({
             ajudasGeral: result.ajudas
           });
           
         },
-        // Nota: É importante lidar com os erros aqui
-        // em vez de um bloco catch() para não recebermos
-        // exceções de erros dos componentes.
         (error) => {
           this.setState({
             error
@@ -55,9 +49,6 @@ class  MuralPedidos extends Component {
           });
           
         },
-        // Nota: É importante lidar com os erros aqui
-        // em vez de um bloco catch() para não recebermos
-        // exceções de erros dos componentes.
         (error) => {
           this.setState({
             error

@@ -1,25 +1,32 @@
-import { Step, StepLabel, Stepper, Typography } from "@material-ui/core";
-import { useEffect, useState } from "react";
-
 import DadosUsuarioLogin from "./DadosUsuarioLogin";
+import UsuarioLogadoPage from "./UsuarioLogadoPage"
 import { useCookies } from "react-cookie";
+import { useState } from "react";
 
-function FormularioLogin({ aoEnviar, validacoes }) {
+function FormularioLogin() {
   const [dadosColetados, setDados] = useState({});
-  const [cookies, setCookie] = useCookies(["token"]);
+  const [cookies] = useCookies(["token"]);
   
-  // useEffect(() => {
-  //   if (etapaAtual === formularios.length - 1) {
-  //     aoEnviar(dadosColetados);
-  //   }
-  // });
 
   function coletarDados(dados) {
     setDados({ ...dadosColetados, ...dados });
   }
 
+  function validarCookies() {
+    if(cookies.token === "undefined"){
+      console.log("aqui")
+      return false;
+    }
+
+    return true;
+  }
+
+
   return (
-      <DadosUsuarioLogin aoEnviar={coletarDados} />
+    <>
+      {validarCookies() && <UsuarioLogadoPage></UsuarioLogadoPage>}
+      {!validarCookies() && <DadosUsuarioLogin aoEnviar={coletarDados} />}
+    </>
   );
 }
 

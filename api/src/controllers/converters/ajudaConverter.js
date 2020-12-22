@@ -8,6 +8,7 @@ exports.convertToAjudaDTO = (ajuda) => {
       description: ajuda.description ? ajuda.description : null,
       userId: ajuda.user_id ? ajuda.user_id : null,
       allowPhoneNumber: ajuda.allow_phone_number === null ? null : convertBooleanMySQLFormat(ajuda.allow_phone_number),
+      phoneNumber: ajuda.phone_number ? ajuda.phone_number : null,
       professorId: ajuda.professor_id ? ajuda.professor_id : null,
       languageId: ajuda.language_id ? ajuda.language_id : null,
       createdAt: ajuda.created_at ? dateFormat(ajuda.created_at, "dd-mm-yyyy hh:MM:ss") : null,
@@ -19,6 +20,7 @@ exports.convertToAjudaDTO = (ajuda) => {
     description: ajuda.description ? ajuda.description : null,
     userId: ajuda.user_id ? ajuda.user_id : null,
     allowPhoneNumber: ajuda.allow_phone_number === null ? null : convertBooleanMySQLFormat(ajuda.allow_phone_number),
+    phoneNumber: ajuda.phone_number ? ajuda.phone_number : null,
     professorId: ajuda.professor_id ? ajuda.professor_id : null,
     languageId: ajuda.language_id ? ajuda.language_id : null,
     createdAt: ajuda.created_at ? dateFormat(ajuda.created_at, "dd-mm-yyyy hh:MM:ss") : null,
@@ -26,6 +28,7 @@ exports.convertToAjudaDTO = (ajuda) => {
 };
 
 exports.convertToAjuda = (ajudaDTO) => {
+  console.log(ajudaDTO)
   if (ajudaDTO.id) {
     return {
       help_id: ajudaDTO.id,
@@ -33,6 +36,7 @@ exports.convertToAjuda = (ajudaDTO) => {
       description: ajudaDTO.description,
       user_id: ajudaDTO.userId,
       allow_phone_number: ajudaDTO.allowPhoneNumber,
+      phone_number: ajudaDTO.phoneNumber ? ajudaDTO.phoneNumber : null,
       professor_id: ajudaDTO.professorId ? ajudaDTO.professorId : null,
       language_id: ajudaDTO.languageId,
     };
@@ -43,6 +47,7 @@ exports.convertToAjuda = (ajudaDTO) => {
     description: ajudaDTO.description,
     user_id: ajudaDTO.userId,
     allow_phone_number: ajudaDTO.allowPhoneNumber,
+    phone_number: ajudaDTO.phoneNumber ? ajudaDTO.phoneNumber : null,
     professor_id: ajudaDTO.professorId ? ajudaDTO.professorId : null,
     language_id: ajudaDTO.languageId,
   };

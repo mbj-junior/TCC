@@ -14,9 +14,6 @@ import ValidacoesCadastro from "../../contexts/ValidacoesCadastro";
 function FormularioLoginContent() {
   return (
     <Container component="article" maxWidth="sm">
-      <Typography variant="h4" component="h1" align="center">
-        Acesse sua conta
-      </Typography>
       <ValidacoesCadastro.Provider
         value={{
           senha: validarSenha,

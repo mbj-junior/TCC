@@ -1,6 +1,7 @@
 import { Button, TextField } from "@material-ui/core";
 import React, { useContext, useEffect, useState } from "react";
 
+import { Typography } from "@material-ui/core";
 import ValidacoesCadastro from "../../contexts/ValidacoesCadastro";
 import { useCookies } from "react-cookie";
 import useErros from "../../hooks/useErros";
@@ -39,31 +40,36 @@ export default function DadosUsuarioLogin() {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(body),
-    }).then((resp) => {
-        if (resp.status === 200) {
-          handleCookie("bla")
-          console.log(resp)
-          return resp;
-        } else if (resp.status === 500){
-          console.log("erro 500 - erro de aplicação")
-          const error = new Error(resp.error);
-          throw error;
-        } else {
-          console.log(resp.status + " - erro gerado")
-          const error = new Error(resp.error);
-          throw error;
-        }
-  
-      }).then((json) => {
-        console.log(json)
-        return json;
-      }).catch(err => {
-        console.error(err);
-        alert('Error logging in please try again');
-      });
+    })
+    .then((resp) => {
+      if (resp.status === 200) {
+        return resp.json();
+      } else if (resp.status === 500){
+        const error = new Error(resp.error);
+        alert('Erro de aplicação. Tente novamente mais tarde.');
+        return error;
+      } else {
+        const error = new Error(resp.error);
+        alert('Email ou senha incorretos. Tente novamente.');
+        return error;
+      }
+    })
+    .then((json) => {
+      if(json.token){
+        handleCookie(json.token)
+      }
+      
+      return json;
+    })
   };
 
   return (
+    <>
+    <br></br>
+    <Typography variant="h4" component="h1" align="center">
+      Acesse sua conta
+    </Typography>
+    <br></br>
     <form
       onSubmit={(event) => {
         event.preventDefault();
@@ -107,7 +113,7 @@ export default function DadosUsuarioLogin() {
         ENTRAR
       </Button>
     </form>
-
+</>
     
   );
 }
