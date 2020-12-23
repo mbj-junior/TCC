@@ -1,5 +1,4 @@
 import { Button, Typography } from "@material-ui/core";
-
 import React from "react";
 import { useCookies } from "react-cookie";
 

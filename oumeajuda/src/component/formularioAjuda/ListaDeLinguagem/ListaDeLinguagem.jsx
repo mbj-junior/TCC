@@ -37,16 +37,6 @@ class ListaDeLinguagem extends Component {
             );
           })}
         </ul>
-
-         {/* <TextField
-          id="titulo"
-          variant="outlined"
-          fullWidth
-          type="text"
-          className="lista-categorias_input"
-          placeholder="Adicionar Linguagem"
-          onKeyUp={this._handleEventoInput.bind(this)}
-        /> */}
       </section>
     );
   }

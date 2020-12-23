@@ -35,6 +35,6 @@ class Pedido {
     this.titulo = titulo;
     this.texto = texto;
     this.categoria = categoria;
-    this.contato = contato
+    this.contato = contato;
   }
 }

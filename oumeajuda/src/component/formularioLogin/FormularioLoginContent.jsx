@@ -1,5 +1,4 @@
 import "fontsource-roboto";
-
 import { Container } from "@material-ui/core";
 import { validarDigitos, validarSenha } from "../../models/cadastro";
 import FormularioLogin from "./FormularioLogin";

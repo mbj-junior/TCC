@@ -8,8 +8,8 @@ const conectar = async (body) => {
   return await fetch("http://localhost:7000/login/new", {
     method: "POST",
     headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
+      Accept: "application/json",
+      "Content-Type": "application/json",
     },
     body: JSON.stringify(body),
   })
@@ -71,13 +71,11 @@ function DadosUsuario({ aoEnviar }) {
         margin="normal"
         fullWidth
       />
- 
+
       <Button type="submit" variant="contained" color="primary" fullWidth>
         CADASTRO
       </Button>
     </form>
-
-    
   );
 }
 
