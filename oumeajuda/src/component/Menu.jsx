@@ -100,8 +100,8 @@ export default function Menu() {
           indicatorColor="secondary"
         >
           <Tab label="MURAL DE PEDIDOS" {...a11yProps(0, cookies)} />
-          <Tab label="OU ME AJUDA" {...a11yProps(1, cookies)} />
-          <Tab label="CADASTRE-SE" {...a11yProps(2, cookies)} />
+          <Tab label="PEDI AJUDA" {...a11yProps(1, cookies)} />
+          <Tab label="CADASTRAR" {...a11yProps(2, cookies)} />
           <Tab label="ENTRAR" {...a11yProps(3, cookies)} />
         </Tabs>
       </AppBar>
