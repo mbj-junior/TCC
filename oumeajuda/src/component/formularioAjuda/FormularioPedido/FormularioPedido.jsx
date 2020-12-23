@@ -1,9 +1,17 @@
-import { Button, MenuItem, Select, TextField, InputLabel } from "@material-ui/core";
+import {
+  Button,
+  MenuItem,
+  Select,
+  TextField,
+  InputLabel,
+} from "@material-ui/core";
 import React, { Component } from "react";
 
 class FormularioPedido extends Component {
   constructor(props) {
     super(props);
+    this.linguagens = [];
+    this.linguagensMap = new Map();
     this.titulo = "";
     this.texto = "";
     this.linguagemId = "";
@@ -78,7 +86,7 @@ class FormularioPedido extends Component {
       <form
         className="form-cadastro-ajuda"
         onSubmit={this._criarAjuda.bind(this)}
-      > 
+      >
         <InputLabel htmlFor="age-native-simple">Linguagem</InputLabel>
         <Select
           id="ling"
@@ -88,7 +96,7 @@ class FormularioPedido extends Component {
           required="true"
           fullWidth
           onChange={this._handlerMudancaLinguagem.bind(this)}
-          inputProps={{id:"age-native-simple"}}
+          inputProps={{ id: "age-native-simple" }}
         >
           <MenuItem value={1}>JAVA</MenuItem>
           <MenuItem value={2}>JAVA SCRIPT</MenuItem>

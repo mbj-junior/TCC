@@ -1,5 +1,4 @@
 import "fontsource-roboto";
-
 import { Container, Typography } from "@material-ui/core";
 import React, { Component } from "react";
 import ArrayDeAjudas from "../../data/Ajuda";
@@ -24,22 +23,16 @@ class HomeComponent extends Component {
   }
 
   componentWillMount() {
-    this.linguagensProp = this.linguagens.getLinguagens.bind(this.linguagens)();
-    this.linguagensMapProp = this.linguagens.getLinguagensMap.bind(
-      this.linguagens
-    )();
-    console.log(this.props);
     this.setState({
       token: this.props.cookies.token,
     });
-    console.log(this.props);
   }
 
   render() {
     return (
       <Container component="article" maxWidth="sm">
         <Typography variant="h4" component="h1" align="center">
-          Pedido de ajuda
+          Formulário de pedido
         </Typography>
 
         <main className="conteudo-principal">

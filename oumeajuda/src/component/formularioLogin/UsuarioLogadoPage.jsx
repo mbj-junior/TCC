@@ -1,4 +1,5 @@
 import { Button, Typography } from "@material-ui/core";
+
 import React from "react";
 import { useCookies } from "react-cookie";
 
@@ -13,11 +14,13 @@ export default function UsuarioLogadoPage() {
     <>
       <br></br>
       <Typography variant="h4" align="center">
-        Seja bem vinda(o).
+        Seja bem vindo(a).
       </Typography>
       <Typography variant="h5" align="center">
-        Você já está logada(o).
+        Você já está logado(a).
       </Typography>
+      <br></br>
+      <br></br>
       <br></br>
       <Button
         type="button"

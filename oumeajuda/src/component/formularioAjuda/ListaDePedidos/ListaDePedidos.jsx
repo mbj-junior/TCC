@@ -1,8 +1,6 @@
 import "./estilo.css";
-
 import { Grid, List } from "@material-ui/core";
 import React, { Component } from "react";
-
 import Pedido from "../../muralPedidos/Pedido";
 
 class ListaDeNotas extends Component {

@@ -70,7 +70,7 @@ exports.usuarioAlterar = (req, res, next) => {
   usuarioModel.changeUsuario(connection, usuario, function (err, results) {
     if (!err) {
       if (results.affectedRows) {
-        res.status(201).json({
+        res.status(200).json({
           code: "OK",
           message: "Usuario alterado.",
         });
