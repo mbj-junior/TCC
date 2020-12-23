@@ -1,4 +1,3 @@
-import "fontsource-roboto";
 import { Container, Typography } from "@material-ui/core";
 import React, { Component } from "react";
 import Pedido from "./Pedido";
@@ -68,7 +67,7 @@ class MuralPedidos extends Component {
           })}
         </div>
         <Typography variant="subtitle1" align="justify">
-          <h2>O que somos</h2>
+          <h3>O que somos</h3>
           <p>
             Temos como objetivo, conectar as pessoas que precisam de uma ajudinha
             nos estudos de programação, com aqueles que estão dispostos a
