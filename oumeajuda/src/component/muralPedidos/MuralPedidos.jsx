@@ -59,7 +59,7 @@ class MuralPedidos extends Component {
     return (
       <Container component="article" maxWidth="sm">
         <Typography variant="h5" align="center">
-          Não consegue avançar nos estudo?
+          Não consegue avançar nos estudos?
         </Typography>
         <Typography variant="h6" align="center">
           <p>Deixe aqui o seu pedido, para um monitor possa te ajudar</p>

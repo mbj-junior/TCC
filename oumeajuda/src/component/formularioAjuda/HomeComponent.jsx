@@ -39,7 +39,7 @@ class HomeComponent extends Component {
     return (
       <Container component="article" maxWidth="sm">
         <Typography variant="h4" component="h1" align="center">
-          Formulário de pedido
+          Pedido de ajuda
         </Typography>
 
         <main className="conteudo-principal">
