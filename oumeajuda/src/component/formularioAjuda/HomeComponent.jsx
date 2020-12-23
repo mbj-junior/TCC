@@ -1,7 +1,6 @@
 import "fontsource-roboto";
 
 import { Container, Typography } from "@material-ui/core";
-import { Cookies, withCookies } from "react-cookie";
 import React, { Component } from "react";
 
 import ArrayDeAjudas from "../../data/Ajuda";
@@ -9,7 +8,6 @@ import Categorias from "../../data/Categorias";
 import FormularioPedido from "./FormularioPedido";
 import Linguagens from "../../data/Linguagens";
 import ListaDeNotas from "./ListaDePedidos";
-import { instanceOf } from "prop-types";
 
 class HomeComponent extends Component {
   constructor(props) {

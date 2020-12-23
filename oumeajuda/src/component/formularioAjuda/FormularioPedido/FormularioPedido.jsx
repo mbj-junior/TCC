@@ -1,9 +1,4 @@
-import {
-  Button,
-  MenuItem,
-  Select,
-  TextField,
-} from "@material-ui/core";
+import { Button, MenuItem, Select, TextField } from "@material-ui/core";
 import React, { Component } from "react";
 
 class FormularioPedido extends Component {
@@ -14,11 +9,11 @@ class FormularioPedido extends Component {
     this.linguagemId = "";
     this.contato = "";
     this.state = {
-      categorias: []
+      categorias: [],
     };
     this._novasCategorias = this._novasCategorias.bind(this);
   }
-  
+
   componentDidMount() {
     this.props.categorias.inscrever(this._novasCategorias);
   }
@@ -56,42 +51,35 @@ class FormularioPedido extends Component {
     evento.stopPropagation();
 
     let ajudaBody = {
-      "title": this.titulo,
-      "description": this.texto,
-      "userId": 1,
-      "allowPhoneNumber": false,
-      "phoneNumber": this.contato,
-      "professorId": null,
-      "languageId": this.linguagemId
-    }
-    
-    postAjuda(ajudaBody).then(response => {
-      let ajudaCadastrada = response.ajudas;
-      this.setState({ ...this.state, ajudaCadastrada});
-      this.props.criarAjuda(ajudaCadastrada.title, ajudaCadastrada.description, this.linguagemId, this.contato, ajudaCadastrada.createdAt);
-    })
+      title: this.titulo,
+      description: this.texto,
+      userId: 1,
+      allowPhoneNumber: false,
+      phoneNumber: this.contato,
+      professorId: null,
+      languageId: this.linguagemId,
+    };
 
-    /*
-    allowPhoneNumber: false
-    createdAt: "20-12-2020 01:40:42"
-    description: "Finalize a configuração da sua loja no Portal do Parceiro para poder vender no iFood."
-    id: 65
-    languageId: 3
-    professorId: null
-    title: "thfdghgf"
-    userId: 1
-    */
-   
+    postAjuda(ajudaBody).then((response) => {
+      let ajudaCadastrada = response.ajudas;
+      this.setState({ ...this.state, ajudaCadastrada });
+      this.props.criarAjuda(
+        ajudaCadastrada.title,
+        ajudaCadastrada.description,
+        this.linguagemId,
+        this.contato,
+        ajudaCadastrada.createdAt
+      );
+    });
   }
 
   render() {
-
-    // const { linguagens } = this.state;
-    {/* {data && data.linguagens.map((linguagem) => <p>{linguagem.languageName}</p>)} */}
-
     return (
-      <form className="form-cadastro-ajuda" onSubmit={this._criarAjuda.bind(this)}>
-        <Select 
+      <form
+        className="form-cadastro-ajuda"
+        onSubmit={this._criarAjuda.bind(this)}
+      >
+        <Select
           id="ling"
           variant="outlined"
           margin="normal"
@@ -100,13 +88,12 @@ class FormularioPedido extends Component {
           fullWidth
           onChange={this._handlerMudancaLinguagem.bind(this)}
         >
-          
-        <MenuItem value={1}>JAVA</MenuItem>
-        <MenuItem value={2}>JAVA SCRIPT</MenuItem>
-        <MenuItem value={3}>NODE JS</MenuItem>
-        <MenuItem value={4}>KOTLIN</MenuItem>
+          <MenuItem value={1}>JAVA</MenuItem>
+          <MenuItem value={2}>JAVA SCRIPT</MenuItem>
+          <MenuItem value={3}>NODE JS</MenuItem>
+          <MenuItem value={4}>KOTLIN</MenuItem>
         </Select>
-        
+
         <TextField
           id="titulo"
           label="Título"
@@ -117,7 +104,7 @@ class FormularioPedido extends Component {
           fullWidth
           onChange={this._handlerMudancaTitulo.bind(this)}
         />
-        
+
         <TextField
           id="description"
           label="Qual a sua dificuldade?"
@@ -150,20 +137,20 @@ class FormularioPedido extends Component {
 
 export default FormularioPedido;
 
-const postAjuda = async (body) => { 
-  console.log(body) 
+const postAjuda = async (body) => {
+  console.log(body);
   return await fetch("http://localhost:7000/ajudas", {
     method: "POST",
     headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
+      Accept: "application/json",
+      "Content-Type": "application/json",
     },
     body: JSON.stringify(body),
   })
-  .then((resp) => {
-    return resp.json();
-  })
-  .then((json) => {
-    return json;
-  });
+    .then((resp) => {
+      return resp.json();
+    })
+    .then((json) => {
+      return json;
+    });
 };

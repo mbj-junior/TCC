@@ -3,7 +3,6 @@ import "./estilo.css";
 import { Grid, List } from "@material-ui/core";
 import React, { Component } from "react";
 
-import CardPedido from "../CardPedido";
 import Pedido from "../../muralPedidos/Pedido";
 
 class ListaDeNotas extends Component {

@@ -62,15 +62,11 @@ class  MuralPedidos extends Component {
     
     return (
       <Container component="article" maxWidth="sm">
-        <Typography variant="title" component="h1" align="center">
-          <h3>Bem vindo ao OUMEAJUDA</h3>
+        <Typography variant="h5"  align="center">
+        Não consegue avançar nos estudo?
         </Typography>
-        <Typography variant="body1" component="h1" align="justify">
-          <p>
-            Bem vinda(o) ao OUMEAJUDA, um site com o objetivo de conectar as
-            pessoas que precisam de uma ajudinha nos estudos, com aqueles que
-            estão dispostos a ajudar.{" "}
-          </p>   
+        <Typography variant="h6" align="center">
+          <p>Deixe aqui o seu pedido, para um monitor possa te ajudar</p>
         </Typography>
         <div>
         {ajudasGeral.map((nota, index) => {

@@ -1,13 +1,13 @@
-import { Step, StepLabel, Stepper, Typography } from "@material-ui/core";
+import { Step, StepLabel, Stepper } from "@material-ui/core";
 import { useEffect, useState } from "react";
 
 import DadosPessoais from "./DadosPessoais";
 import DadosUsuario from "./DadosUsuario";
 
-function FormularioCadastro({ aoEnviar, validacoes }) {
+function FormularioCadastro({ aoEnviar }) {
   const [etapaAtual, setEtapaAtual] = useState(0);
   const [dadosColetados, setDados] = useState({});
-  
+
   useEffect(() => {
     if (etapaAtual === formularios.length - 1) {
       aoEnviar(dadosColetados);

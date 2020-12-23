@@ -28,7 +28,6 @@ let _criarLogin = (login) => {
 function DadosUsuario({ aoEnviar }) {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
-  const [usuarioId, setUsuarioId] = useState("");
   const validacoes = useContext(ValidacoesCadastro);
   const [erros, validarCampos, possoEnviar] = useErros(validacoes);
 
@@ -83,14 +82,3 @@ function DadosUsuario({ aoEnviar }) {
 }
 
 export default DadosUsuario;
-
-
-
-      // {/* <Button
-      //   type="submit"
-      //   variant="contained"
-      //   color="primary"
-      //   fullWidth
-      // >
-      //   LOGIN
-      // </Button> */}
