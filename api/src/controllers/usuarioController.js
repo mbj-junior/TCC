@@ -2,7 +2,7 @@ const usuarioModel = require("../models/usuarioModel");
 const dbConnection = require("../config/dbConnection");
 const {
   convertToUsuario,
-  convertToUsuarioDTO
+  convertToUsuarioDTO,
 } = require("./converters/usuarioConverter");
 
 exports.usuarioListar = (req, res, next) => {
@@ -28,7 +28,8 @@ exports.usuarioListar = (req, res, next) => {
       res.status(500).send({
         code: "ERROR",
         usuario: null,
-        message: "Ocorreu algum erro ao buscar o usuário: ["+ err.message +"].",
+        message:
+          "Ocorreu algum erro ao buscar o usuário: [" + err.message + "].",
       });
     }
   });
@@ -50,7 +51,8 @@ exports.usuarioSalvar = (req, res, next) => {
       res.status(500).send({
         code: "ERROR",
         usuario: null,
-        message: "Ocorreu algum erro ao criar o usuário: ["+ err.message +"].",
+        message:
+          "Ocorreu algum erro ao criar o usuário: [" + err.message + "].",
       });
     }
   });
@@ -58,28 +60,32 @@ exports.usuarioSalvar = (req, res, next) => {
 
 exports.usuarioAlterar = (req, res, next) => {
   let usuarioIncompleto = req.body;
-  let usuario = convertToUsuario( {...usuarioIncompleto, ...{id : req.params.id}  });
+  let usuario = convertToUsuario({
+    ...usuarioIncompleto,
+    ...{ id: req.params.id },
+  });
 
   const connection = dbConnection();
 
   usuarioModel.changeUsuario(connection, usuario, function (err, results) {
     if (!err) {
-      if(results.affectedRows){
+      if (results.affectedRows) {
         res.status(201).json({
           code: "OK",
           message: "Usuario alterado.",
         });
-      }else{
+      } else {
         res.status(404).json({
           code: "WARNING",
           message: "Não existe nenhum usuário cadastrado com esse id.",
         });
-      }  
+      }
     } else {
       res.status(500).send({
         code: "ERROR",
         usuario: null,
-        message: "Ocorreu algum erro ao criar o usuário: ["+ err.message +"].",
+        message:
+          "Ocorreu algum erro ao criar o usuário: [" + err.message + "].",
       });
     }
   });

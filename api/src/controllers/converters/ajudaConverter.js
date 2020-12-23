@@ -1,4 +1,4 @@
-const dateFormat = require('dateformat');
+const dateFormat = require("dateformat");
 
 exports.convertToAjudaDTO = (ajuda) => {
   if (ajuda.help_id) {
@@ -7,11 +7,16 @@ exports.convertToAjudaDTO = (ajuda) => {
       title: ajuda.title ? ajuda.title : null,
       description: ajuda.description ? ajuda.description : null,
       userId: ajuda.user_id ? ajuda.user_id : null,
-      allowPhoneNumber: ajuda.allow_phone_number === null ? null : convertBooleanMySQLFormat(ajuda.allow_phone_number),
+      allowPhoneNumber:
+        ajuda.allow_phone_number === null
+          ? null
+          : convertBooleanMySQLFormat(ajuda.allow_phone_number),
       phoneNumber: ajuda.phone_number ? ajuda.phone_number : null,
       professorId: ajuda.professor_id ? ajuda.professor_id : null,
       languageId: ajuda.language_id ? ajuda.language_id : null,
-      createdAt: ajuda.created_at ? dateFormat(ajuda.created_at, "dd-mm-yyyy hh:MM:ss") : null,
+      createdAt: ajuda.created_at
+        ? dateFormat(ajuda.created_at, "dd-mm-yyyy hh:MM:ss")
+        : null,
     };
   }
 
@@ -19,16 +24,21 @@ exports.convertToAjudaDTO = (ajuda) => {
     title: ajuda.title ? ajuda.title : null,
     description: ajuda.description ? ajuda.description : null,
     userId: ajuda.user_id ? ajuda.user_id : null,
-    allowPhoneNumber: ajuda.allow_phone_number === null ? null : convertBooleanMySQLFormat(ajuda.allow_phone_number),
+    allowPhoneNumber:
+      ajuda.allow_phone_number === null
+        ? null
+        : convertBooleanMySQLFormat(ajuda.allow_phone_number),
     phoneNumber: ajuda.phone_number ? ajuda.phone_number : null,
     professorId: ajuda.professor_id ? ajuda.professor_id : null,
     languageId: ajuda.language_id ? ajuda.language_id : null,
-    createdAt: ajuda.created_at ? dateFormat(ajuda.created_at, "dd-mm-yyyy hh:MM:ss") : null,
+    createdAt: ajuda.created_at
+      ? dateFormat(ajuda.created_at, "dd-mm-yyyy hh:MM:ss")
+      : null,
   };
 };
 
 exports.convertToAjuda = (ajudaDTO) => {
-  console.log(ajudaDTO)
+  console.log(ajudaDTO);
   if (ajudaDTO.id) {
     return {
       help_id: ajudaDTO.id,
