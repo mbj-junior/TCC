@@ -4,7 +4,7 @@ import React from "react";
 import { useCookies } from "react-cookie";
 
 export default function UsuarioLogadoPage() {
-  const [cookies, removeCookie] = useCookies(["token"]);
+  const [removeCookie] = useCookies(["token"]);
 
   function handleRemoveCookie() {
     removeCookie("token");
