@@ -1,22 +1,18 @@
-import "fontsource-roboto";
-
 import { Container, Typography } from "@material-ui/core";
 import React, { Component } from "react";
-
 import Pedido from "./Pedido";
 
-class  MuralPedidos extends Component {
-  constructor(){
+class MuralPedidos extends Component {
+  constructor() {
     super();
-    this.state = { 
+    this.state = {
       ajudasGeral: [],
       linguagens: new Map(),
       error: null
     };
   }
-  
-  componentDidMount() {
 
+  componentDidMount() {
     fetch("http://localhost:7000/ajudas")
       .then(res => res.json())
       .then(
@@ -24,7 +20,7 @@ class  MuralPedidos extends Component {
           this.setState({
             ajudasGeral: result.ajudas
           });
-          
+
         },
         (error) => {
           this.setState({
@@ -32,22 +28,22 @@ class  MuralPedidos extends Component {
           });
         }
       )
-      
-      fetch("http://localhost:7000/linguagens")
+
+    fetch("http://localhost:7000/linguagens")
       .then(res => res.json())
       .then(
         (result) => {
           console.log(result)
           let myMap = new Map();
-          
+
           result.linguagens.forEach(
             (linguagem) => myMap.set(linguagem.languageId, linguagem.languageName)
           )
-          
+
           this.setState({
             linguagens: myMap
           });
-          
+
         },
         (error) => {
           this.setState({
@@ -56,7 +52,7 @@ class  MuralPedidos extends Component {
         }
       )
   }
-  
+
   render() {
     const { ajudasGeral, linguagens } = this.state;
 
@@ -85,16 +81,6 @@ class  MuralPedidos extends Component {
     );
   }
 }
-
-/*
-allowPhoneNumber: true
-description: "description"
-id: 13
-languageId: 1
-professorId: null
-title: "titulo"
-userId: 1
-*/
 
 export default MuralPedidos;
 
