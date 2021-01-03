@@ -53,13 +53,13 @@ class FormularioPedido extends Component {
     evento.stopPropagation();
 
     let ajudaBody = {
-      title: this.titulo,
-      description: this.texto,
-      userId: 1,
-      allowPhoneNumber: false,
-      phoneNumber: this.contato,
-      professorId: null,
-      languageId: this.linguagemId,
+      "title": this.titulo,
+      "description": this.texto,
+      "userId": 1,
+      "allowPhoneNumber": false,
+      "phoneNumber": this.contato,
+      "professorId": null,
+      "languageId": this.linguagemId,
     };
 
     postAjuda(ajudaBody).then((response) => {
