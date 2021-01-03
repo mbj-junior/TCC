@@ -1,5 +1,4 @@
-import React, {useState} from 'react';
-
+import React, { useState } from 'react';
 import Button from '@material-ui/core/Button';
 import Popover from '@material-ui/core/Popover';
 import Typography from '@material-ui/core/Typography';
@@ -15,7 +14,7 @@ export default function ContatoPopover(contato) {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = useState(null);
   const [contatoHandled, setContato] = useState("");
-  
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
     handleContato()
@@ -25,10 +24,10 @@ export default function ContatoPopover(contato) {
     setAnchorEl(null);
     setContato(null);
   };
-  
+
   const handleContato = () => {
     console.log(contato.contato === null);
-    if(contato.contato === null){
+    if (contato.contato === null) {
       setContato("Contato não definido");
     } else {
       setContato(contato.contato);
@@ -41,7 +40,7 @@ export default function ContatoPopover(contato) {
   return (
     <div>
       <Button aria-describedby={id} variant="contained" color="primary" onClick={handleClick}>
-          Ver Contato
+        Ver Contato
       </Button>
       <Popover
         id={id}
