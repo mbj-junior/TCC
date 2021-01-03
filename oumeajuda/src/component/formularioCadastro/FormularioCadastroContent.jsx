@@ -1,10 +1,13 @@
 import "fontsource-roboto";
+
 import { Container, Typography } from "@material-ui/core";
 import {
   validarCelular,
   validarDigitos,
   validarSenha,
 } from "../../models/cadastro";
+
+// import "../../App.css";
 import FormularioCadastro from "./FormularioCadastro";
 import ValidacoesCadastro from "../../contexts/ValidacoesCadastro";
 

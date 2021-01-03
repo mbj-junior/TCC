@@ -1,22 +1,22 @@
-import { Step, StepLabel, Stepper } from "@material-ui/core";
+import { Step, StepLabel, Stepper, Typography } from "@material-ui/core";
 import { useEffect, useState } from "react";
+
 import DadosPessoais from "./DadosPessoais";
 import DadosUsuario from "./DadosUsuario";
+import Confirmacao from "./Confirmacao"
 
-function FormularioCadastro({ aoEnviar, validacoes }) {
+function FormularioCadastro() {
   const [etapaAtual, setEtapaAtual] = useState(0);
   const [dadosColetados, setDados] = useState({});
-
+  
   useEffect(() => {
     if (etapaAtual === formularios.length - 1) {
-      aoEnviar(dadosColetados);
+      coletarDados(dadosColetados);
     }
   });
 
   function coletarDados(dados) {
-    console.log("dados coletados");
     setDados({ ...dadosColetados, ...dados });
-    console.log(dadosColetados);
     proximo();
   }
 
@@ -25,14 +25,13 @@ function FormularioCadastro({ aoEnviar, validacoes }) {
   }
 
   function proximo() {
-    console.log("proximo");
     setEtapaAtual(etapaAtual + 1);
   }
 
   const formularios = [
     <DadosUsuario aoEnviar={coletarDados} />,
     <DadosPessoais aoEnviar={coletarDados} getDados={getDados} />,
-    <h3>Obrigado pelo cadastro</h3>,
+    <Confirmacao/>
   ];
 
   return (

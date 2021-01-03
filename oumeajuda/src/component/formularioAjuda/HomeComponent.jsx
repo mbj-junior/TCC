@@ -1,38 +1,41 @@
 import "fontsource-roboto";
+
 import { Container, Typography } from "@material-ui/core";
+import { Cookies, withCookies } from "react-cookie";
 import React, { Component } from "react";
+
 import ArrayDeAjudas from "../../data/Ajuda";
 import Categorias from "../../data/Categorias";
 import FormularioPedido from "./FormularioPedido";
 import Linguagens from "../../data/Linguagens";
 import ListaDeNotas from "./ListaDePedidos";
+import { instanceOf } from "prop-types";
 
 class HomeComponent extends Component {
   constructor(props) {
     super(props);
     this.categorias = new Categorias();
     this.ajudas = new ArrayDeAjudas();
-    this.linguagens = new Linguagens();
+    this.linguagens = new Linguagens()
     this.linguagensProp = this.linguagens.getLinguagens.bind(this.linguagens)();
-    this.linguagensMapProp = this.linguagens.getLinguagensMap.bind(
-      this.linguagens
-    )();
+    this.linguagensMapProp = this.linguagens.getLinguagensMap.bind(this.linguagens)();   
     this.state = {
-      token: "",
+      token: ""
     };
   }
 
-  componentWillMount() {
+  componentWillMount(){
     this.setState({
-      token: this.props.cookies.token,
-    });
+      token: this.props.cookies.token
+    })
   }
 
-  render() {
+  render() {   
     return (
+      
       <Container component="article" maxWidth="sm">
         <Typography variant="h4" component="h1" align="center">
-          Qual o problema?
+          Formulário de pedido
         </Typography>
 
         <main className="conteudo-principal">
@@ -43,7 +46,14 @@ class HomeComponent extends Component {
             linguagens={this.linguagensProp}
             linguagensMap={this.linguagensMapProp}
           />
-
+          {/* <ListaDeLinguagem
+            adicionarCategoria={this.categorias.adicionarCategoria.bind(
+              this.categorias
+              
+            )}
+            categorias={this.categorias}
+          /> */}
+          
           <ListaDeNotas
             apagarNota={this.ajudas.apagarNotas.bind(this.ajudas)}
             notas={this.ajudas}

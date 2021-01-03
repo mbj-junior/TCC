@@ -7,7 +7,7 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 
 exports.getLogin = (req, res, next) => {
-  const { email, senha: psw } = req.body;
+  const { email, senha: psw } = req.body; //{ email: "", psw: ""}
 
   const connection = dbConnection();
 
@@ -43,18 +43,21 @@ exports.getLogin = (req, res, next) => {
             message: "Email ou senha incorretos.",
           });
         }
+        
 
         const payload = { email };
         const token = jwt.sign(payload, "secret", {
           expiresIn: "1h",
+          
         });
-
-        console.log(token);
+        
+        console.log(token)
         return res.status(200).send({
           code: "OK",
           token: token,
           message: "Logado com sucesso.",
-        });
+        })
+        
       });
     }
   });

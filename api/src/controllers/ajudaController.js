@@ -37,6 +37,7 @@ exports.ajudasListar = (req, res, next) => {
 };
 
 exports.ajudasUsuarioListar = (req, res, next) => {
+  //TODO - falta saber buscar como query param
   let usuarioId = req.query.usuarioId;
   const connection = dbConnection();
 
@@ -111,11 +112,11 @@ exports.ajudaSalvar = (req, res, next) => {
   ajudaModel.saveAjuda(connection, ajuda, function (err, results) {
     if (!err) {
       let ajudaId = results.insertId;
-
+      
       ajudaModel.getAjudaById(connection, ajudaId, function (err, results) {
         if (!err) {
           if (results[0]) {
-            let ajuda = results[0];
+            let ajuda= results[0];
 
             res.status(201).json({
               code: "OK",
@@ -127,9 +128,7 @@ exports.ajudaSalvar = (req, res, next) => {
               code: "ERROR",
               ajudas: null,
               message:
-                "Ocorreu algum erro ao buscar a ajuda cadastrada: [" +
-                err.message +
-                "].",
+                "Ocorreu algum erro ao buscar a ajuda cadastrada: [" + err.message + "].",
             });
           }
         } else {
@@ -137,9 +136,7 @@ exports.ajudaSalvar = (req, res, next) => {
             code: "ERROR",
             ajudas: null,
             message:
-              "Ocorreu algum erro ao buscar a ajuda cadastrada: [" +
-              err.message +
-              "].",
+              "Ocorreu algum erro ao buscar a ajuda cadastrada: [" + err.message + "].",
           });
         }
       });

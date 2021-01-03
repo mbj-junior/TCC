@@ -1,8 +1,8 @@
-import FormControl from "@material-ui/core/FormControl";
-import InputLabel from "@material-ui/core/InputLabel";
-import React from "react";
-import Select from "@material-ui/core/Select";
-import { makeStyles } from "@material-ui/core/styles";
+import FormControl from '@material-ui/core/FormControl';
+import InputLabel from '@material-ui/core/InputLabel';
+import React from 'react';
+import Select from '@material-ui/core/Select';
+import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -17,8 +17,8 @@ const useStyles = makeStyles((theme) => ({
 export default function LinguagensSelect(linguagensMap) {
   const classes = useStyles();
   const [state, setState] = React.useState({
-    age: "",
-    name: "hai",
+    age: '',
+    name: 'hai',
   });
 
   const handleChange = (event) => {
@@ -28,11 +28,10 @@ export default function LinguagensSelect(linguagensMap) {
       [name]: event.target.value,
     });
   };
-  {
-    console.log(linguagensMap);
-  }
+  {console.log(linguagensMap)}
   return (
     <>
+
       <FormControl variant="outlined" className={classes.formControl}>
         <InputLabel htmlFor="outlined-age-native-simple">Age</InputLabel>
         <Select
@@ -41,8 +40,8 @@ export default function LinguagensSelect(linguagensMap) {
           onChange={handleChange}
           label="Age"
           inputProps={{
-            name: "age",
-            id: "outlined-age-native-simple",
+            name: 'age',
+            id: 'outlined-age-native-simple',
           }}
         >
           <option aria-label="None" value="" />
@@ -51,6 +50,7 @@ export default function LinguagensSelect(linguagensMap) {
           <option value={30}>Thirty</option>
         </Select>
       </FormControl>
+    
     </>
   );
 }

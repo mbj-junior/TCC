@@ -2,7 +2,7 @@ const linguagemModel = require("../models/linguagemModel");
 const dbConnection = require("../config/dbConnection");
 const {
   converterToLinguagem,
-  convertToLinguagemDTO,
+  convertToLinguagemDTO
 } = require("./converters/linguagemConverter");
 
 exports.linguagensListar = (req, res, next) => {
@@ -13,8 +13,8 @@ exports.linguagensListar = (req, res, next) => {
       if (results[0]) {
         res.status(200).json({
           code: "OK",
-          linguagens: results.map((element) => {
-            return convertToLinguagemDTO(element);
+          linguagens: results.map(element => {
+            return convertToLinguagemDTO(element)
           }),
           message: "Linguagens cadastradas.",
         });
@@ -29,8 +29,7 @@ exports.linguagensListar = (req, res, next) => {
       res.status(500).send({
         code: "ERROR",
         linguagens: null,
-        message:
-          "Ocorreu algum erro ao buscar as linguagens: [" + err.message + "].",
+        message: "Ocorreu algum erro ao buscar as linguagens: ["+ err.message +"].",
       });
     }
   });
@@ -63,8 +62,7 @@ exports.linguagemListar = (req, res, next) => {
         res.status(500).send({
           code: "ERROR",
           linguagens: null,
-          message:
-            "Ocorreu algum erro ao buscar a linguagem: [" + err.message + "].",
+          message: "Ocorreu algum erro ao buscar a linguagem: ["+ err.message +"].",
         });
       }
     }
@@ -87,8 +85,7 @@ exports.linguagemSalvar = (req, res, next) => {
       res.status(500).send({
         code: "ERROR",
         linguagens: null,
-        message:
-          "Ocorreu algum erro ao salvar a linguagem: [" + err.message + "].",
+        message: "Ocorreu algum erro ao salvar a linguagem: ["+ err.message +"].",
       });
     }
   });

@@ -6,16 +6,17 @@ import {
   Typography,
   makeStyles,
 } from "@material-ui/core";
+
 import FormularioCadastroContent from "./formularioCadastro/FormularioCadastroContent";
-import FormularioLoginContent from "./formularioLogin/FormularioLoginContent";
+import FormularioLoginContent from "./formularioLogin/FormularioLoginContent"
 import HomeComponent from "./formularioAjuda/HomeComponent";
-import MuralPedidos from "./muralPedidos/MuralPedidos";
+import MuralPedidos from "./muralPedidos/MuralPedidos"
 import PropTypes from "prop-types";
 import React from "react";
 import { useCookies } from "react-cookie";
 
 function TabPanel(props) {
-  console.log("construir");
+  console.log("construir")
 
   const { children, value, index, ...other } = props;
 
@@ -43,22 +44,22 @@ TabPanel.propTypes = {
 };
 
 function a11yProps(index, cookies) {
-  if (index === 2 && validarCookies(cookies)) {
+  if(index === 2 && validarCookies(cookies)){
     return {
       id: `simple-tab-${index}`,
       "aria-controls": `simple-tabpanel-${index}`,
-      disabled: true,
+      disabled: true
     };
   }
-
-  if (index === 1 && !validarCookies(cookies)) {
+  
+  if(index === 1 && !validarCookies(cookies)){
     return {
       id: `simple-tab-${index}`,
       "aria-controls": `simple-tabpanel-${index}`,
-      disabled: true,
+      disabled: true
     };
   }
-
+  
   return {
     id: `simple-tab-${index}`,
     "aria-controls": `simple-tabpanel-${index}`,
@@ -66,7 +67,7 @@ function a11yProps(index, cookies) {
 }
 
 function validarCookies(cookies) {
-  if (cookies.token === "undefined") {
+  if(cookies.token === "undefined"){
     return false;
   }
 
@@ -85,6 +86,7 @@ export default function Menu() {
   const [value, setValue] = React.useState(0);
   const [cookies] = useCookies(["token"]);
 
+  
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -100,8 +102,8 @@ export default function Menu() {
           indicatorColor="secondary"
         >
           <Tab label="MURAL DE PEDIDOS" {...a11yProps(0, cookies)} />
-          <Tab label="PEDI AJUDA" {...a11yProps(1, cookies)} />
-          <Tab label="CADASTRAR" {...a11yProps(2, cookies)} />
+          <Tab label="OU ME AJUDA" {...a11yProps(1, cookies)} />
+          <Tab label="CADASTRE-SE" {...a11yProps(2, cookies)}/>
           <Tab label="ENTRAR" {...a11yProps(3, cookies)} />
         </Tabs>
       </AppBar>

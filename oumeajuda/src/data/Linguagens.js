@@ -11,15 +11,21 @@ export default class Linguagens {
       .then((res) => res.json())
       .then(
         (result) => {
+        //   console.log(result.linguagens);
+        //   let myMap = new Map();
+
           result.linguagens.forEach((linguagem) => {
             this.linguagens.push(linguagem);
-            this.linguagensMap.set(
-              linguagem.languageId,
-              linguagem.languageName
-            );
+            this.linguagensMap.set(linguagem.languageId, linguagem.languageName);
           });
-        },
 
+        //   // console.log(result.linguagens)
+        //   this.linguagensMap = myMap;
+        //   this.linguagens.push(result.linguagens);
+        },
+        // Nota: É importante lidar com os erros aqui
+        // em vez de um bloco catch() para não recebermos
+        // exceções de erros dos componentes.
         (error) => {
           this.linguagensError = error;
         }
@@ -33,6 +39,7 @@ export default class Linguagens {
 
     this.getLinguagensFromService();
 
+    // console.log(this.linguagensMap);
     return this.linguagens;
   }
 
@@ -43,6 +50,7 @@ export default class Linguagens {
 
     this.getLinguagensFromService();
 
+    // console.log(this.linguagensMap);
     return this.linguagensMap;
   }
 }
