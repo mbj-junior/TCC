@@ -28,7 +28,6 @@ exports.convertToAjudaDTO = (ajuda) => {
 };
 
 exports.convertToAjuda = (ajudaDTO) => {
-  console.log(ajudaDTO)
   if (ajudaDTO.id) {
     return {
       help_id: ajudaDTO.id,

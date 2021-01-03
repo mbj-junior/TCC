@@ -15,15 +15,15 @@ export default function UsuarioLogadoPage () {
         <>
             <br></br>
             <Typography variant="h4" align="center">
-                Seja bem vindo(a).
+                Seja bem vinda(o).
             </Typography>
             <Typography variant="h5" align="center">
-                Você já está logado(a).
+                Você já está Conectada(o).
             </Typography>       
             <br></br>
             <br></br>
             <br></br>
-            <Button type="button" variant="contained" color="primary" onClick={handleRemoveCookie} fullWidth>DESLOGAR</Button>
+            <Button type="button" variant="contained" color="primary" onClick={handleRemoveCookie} fullWidth>SAIR</Button>
         </>
     );
 }

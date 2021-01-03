@@ -19,7 +19,6 @@ exports.getLogin = (req, res, next) => {
         message: "Ocorreu algum erro realizar o login: [" + err.message + "].",
       });
     } else {
-      console.log(results);
       if (!results[0]) {
         return res.status(401).send({
           code: "ERROR",
@@ -27,7 +26,6 @@ exports.getLogin = (req, res, next) => {
           message: "Email ou senha incorretos.",
         });
       }
-      console.log(psw);
       isCorrectPassword(psw, results[0].psw, function (err, same) {
         if (err) {
           return res.status(500).send({
@@ -51,7 +49,6 @@ exports.getLogin = (req, res, next) => {
           
         });
         
-        console.log(token)
         return res.status(200).send({
           code: "OK",
           token: token,

@@ -6,7 +6,6 @@ module.exports = {
   // },
 
   getUsuarioById: function (connection, usuarioId, callback) {
-    console.log(usuarioId)
     let sql = "select * from user where user_id = " + usuarioId;
     connection.query(sql, callback);
   },

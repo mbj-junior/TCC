@@ -1,6 +1,5 @@
 exports.convertToLogin = (login) => {
 
-    console.log(login);
     
     if(login.userId){
         return {

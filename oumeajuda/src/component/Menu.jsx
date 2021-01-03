@@ -16,7 +16,6 @@ import React from "react";
 import { useCookies } from "react-cookie";
 
 function TabPanel(props) {
-  console.log("construir")
 
   const { children, value, index, ...other } = props;
 

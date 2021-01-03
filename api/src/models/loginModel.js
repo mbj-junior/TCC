@@ -2,7 +2,6 @@ module.exports = {
   getLoginByUsuarioEmail: function (connection, email, callback) {
     let sql = "select * from login where email = \""+ email+ "\"";
 
-    console.log(sql)
     connection.query(sql, callback);
   },
 
