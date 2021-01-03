@@ -8,49 +8,47 @@ class MuralPedidos extends Component {
     this.state = {
       ajudasGeral: [],
       linguagens: new Map(),
-      error: null
+      error: null,
     };
   }
 
   componentDidMount() {
     fetch("http://localhost:7000/ajudas")
-      .then(res => res.json())
+      .then((res) => res.json())
       .then(
         (result) => {
           this.setState({
-            ajudasGeral: result.ajudas
+            ajudasGeral: result.ajudas,
           });
-
         },
         (error) => {
           this.setState({
-            error
+            error,
           });
         }
-      )
+      );
 
     fetch("http://localhost:7000/linguagens")
-      .then(res => res.json())
+      .then((res) => res.json())
       .then(
         (result) => {
-          console.log(result)
+          console.log(result);
           let myMap = new Map();
 
-          result.linguagens.forEach(
-            (linguagem) => myMap.set(linguagem.languageId, linguagem.languageName)
-          )
+          result.linguagens.forEach((linguagem) =>
+            myMap.set(linguagem.languageId, linguagem.languageName)
+          );
 
           this.setState({
-            linguagens: myMap
+            linguagens: myMap,
           });
-
         },
         (error) => {
           this.setState({
-            error
+            error,
           });
         }
-      )
+      );
   }
 
   render() {
@@ -72,9 +70,9 @@ class MuralPedidos extends Component {
         <Typography variant="subtitle1" align="justify">
           <h3>O que somos</h3>
           <p>
-            Temos como objetivo, conectar as pessoas que precisam de uma ajudinha
-            nos estudos de programação, com monitores que estão dispostos a
-            ajudar.{" "}
+            Temos como objetivo, conectar as pessoas que precisam de uma
+            ajudinha nos estudos de programação, com monitores que estão
+            dispostos a ajudar.{" "}
           </p>
         </Typography>
       </Container>
@@ -83,5 +81,3 @@ class MuralPedidos extends Component {
 }
 
 export default MuralPedidos;
-
-

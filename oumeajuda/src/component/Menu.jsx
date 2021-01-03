@@ -6,17 +6,15 @@ import {
   Typography,
   makeStyles,
 } from "@material-ui/core";
-
 import FormularioCadastroContent from "./formularioCadastro/FormularioCadastroContent";
-import FormularioLoginContent from "./formularioLogin/FormularioLoginContent"
+import FormularioLoginContent from "./formularioLogin/FormularioLoginContent";
 import HomeComponent from "./formularioAjuda/HomeComponent";
-import MuralPedidos from "./muralPedidos/MuralPedidos"
+import MuralPedidos from "./muralPedidos/MuralPedidos";
 import PropTypes from "prop-types";
 import React from "react";
 import { useCookies } from "react-cookie";
 
 function TabPanel(props) {
-
   const { children, value, index, ...other } = props;
 
   return (
@@ -47,7 +45,7 @@ function a11yProps(index, cookies) {
     return {
       id: `simple-tab-${index}`,
       "aria-controls": `simple-tabpanel-${index}`,
-      disabled: true
+      disabled: true,
     };
   }
 
@@ -55,7 +53,7 @@ function a11yProps(index, cookies) {
     return {
       id: `simple-tab-${index}`,
       "aria-controls": `simple-tabpanel-${index}`,
-      disabled: true
+      disabled: true,
     };
   }
 
@@ -84,7 +82,6 @@ export default function Menu() {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
   const [cookies] = useCookies(["token"]);
-
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
