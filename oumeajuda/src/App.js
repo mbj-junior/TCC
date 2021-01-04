@@ -1,5 +1,3 @@
-import "fontsource-roboto";
-
 import Menu from "./component/Menu";
 import React from "react";
 

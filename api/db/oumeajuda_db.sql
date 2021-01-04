@@ -1,4 +1,3 @@
-sudo apt-get install Mysql-server
 sudo mysql -h localhost -u root -p
 
 CREATE DATABASE oumeajuda_db;
