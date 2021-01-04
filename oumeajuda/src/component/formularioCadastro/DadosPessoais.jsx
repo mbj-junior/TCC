@@ -70,8 +70,6 @@ function DadosPessoais({ aoEnviar, getDados }) {
           event.preventDefault();
           if (possoEnviar()) {
             alterarUsuario().then((json) => {
-              console.log(json);
-              console.log(aoEnviar);
               aoEnviar(json);
             });
           }

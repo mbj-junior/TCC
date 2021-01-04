@@ -140,7 +140,6 @@ class FormularioPedido extends Component {
 export default FormularioPedido;
 
 const postAjuda = async (body) => {
-  console.log(body);
   return await fetch("http://localhost:7000/ajudas", {
     method: "POST",
     headers: {

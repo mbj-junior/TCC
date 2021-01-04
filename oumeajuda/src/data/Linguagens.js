@@ -6,7 +6,6 @@ export default class Linguagens {
   }
 
   getLinguagensFromService() {
-    console.log("aqui");
     fetch("http://localhost:7000/linguagens")
       .then((res) => res.json())
       .then(

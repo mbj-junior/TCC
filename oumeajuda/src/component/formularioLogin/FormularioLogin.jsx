@@ -13,7 +13,6 @@ function FormularioLogin() {
 
   function validarCookies() {
     if (cookies.token === "undefined") {
-      console.log("aqui");
       return false;
     }
 

@@ -28,9 +28,6 @@ export default function LinguagensSelect(linguagensMap) {
       [name]: event.target.value,
     });
   };
-  {
-    console.log(linguagensMap);
-  }
   return (
     <>
       <FormControl variant="outlined" className={classes.formControl}>

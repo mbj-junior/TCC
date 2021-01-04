@@ -25,7 +25,6 @@ class ListaDeNotas extends Component {
   }
 
   render() {
-    console.log(this.props);
     let index = 0;
     return (
       <Grid className="lista-pedidos">

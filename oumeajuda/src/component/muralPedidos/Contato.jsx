@@ -26,7 +26,6 @@ export default function ContatoPopover(contato) {
   };
 
   const handleContato = () => {
-    console.log(contato.contato === null);
     if (contato.contato === null) {
       setContato("Contato não definido");
     } else {

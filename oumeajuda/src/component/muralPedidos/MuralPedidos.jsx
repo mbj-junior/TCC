@@ -32,7 +32,6 @@ class MuralPedidos extends Component {
       .then((res) => res.json())
       .then(
         (result) => {
-          console.log(result);
           let myMap = new Map();
 
           result.linguagens.forEach((linguagem) =>
