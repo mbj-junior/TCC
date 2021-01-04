@@ -1,4 +1,4 @@
-import { Step, StepLabel, Stepper, Typography } from "@material-ui/core";
+import { Step, StepLabel, Stepper } from "@material-ui/core";
 import { useEffect, useState } from "react";
 
 import DadosPessoais from "./DadosPessoais";
