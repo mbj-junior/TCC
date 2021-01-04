@@ -1,13 +1,6 @@
-import "fontsource-roboto";
+import { Container } from "@material-ui/core";
+import { validarDigitos, validarSenha } from "../../models/cadastro";
 
-import { Container, Typography } from "@material-ui/core";
-import {
-  validarCelular,
-  validarDigitos,
-  validarSenha,
-} from "../../models/cadastro";
-
-// import "../../App.css";
 import FormularioLogin from "./FormularioLogin";
 import ValidacoesCadastro from "../../contexts/ValidacoesCadastro";
 

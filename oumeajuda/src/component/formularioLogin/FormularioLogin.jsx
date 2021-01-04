@@ -1,26 +1,24 @@
 import DadosUsuarioLogin from "./DadosUsuarioLogin";
-import UsuarioLogadoPage from "./UsuarioLogadoPage"
+import UsuarioLogadoPage from "./UsuarioLogadoPage";
 import { useCookies } from "react-cookie";
 import { useState } from "react";
 
 function FormularioLogin() {
   const [dadosColetados, setDados] = useState({});
   const [cookies] = useCookies(["token"]);
-  
 
   function coletarDados(dados) {
     setDados({ ...dadosColetados, ...dados });
   }
-  
+
   function validarCookies() {
-    if(cookies.token === "undefined"){
-      console.log("aqui")
+    if (cookies.token === "undefined") {
+      console.log("aqui");
       return false;
     }
 
     return true;
   }
-
 
   return (
     <>
