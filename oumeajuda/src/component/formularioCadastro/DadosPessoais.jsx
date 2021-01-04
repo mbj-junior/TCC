@@ -1,6 +1,5 @@
 import { Button, FormControlLabel, Switch, TextField } from "@material-ui/core";
 import React, { useContext, useState } from "react";
-
 import Checkbox from '@material-ui/core/Checkbox';
 import FormGroup from "@material-ui/core/FormGroup";
 import Grid from "@material-ui/core/Grid";
@@ -13,7 +12,6 @@ function DadosPessoais({ aoEnviar, getDados }) {
   const [nome, setNome] = useState("");
   const [sobrenome, setSobrenome] = useState("");
   const [celular, setCelular] = useState("");
-  const [promocoes, setPromocoes] = useState(true);
   const validacoes = useContext(ValidacoesCadastro);
   const [erros, validarCampos, possoEnviar] = useErros(validacoes);
   const [checked, setChecked] = React.useState(false);
@@ -23,11 +21,8 @@ function DadosPessoais({ aoEnviar, getDados }) {
   };
   
   const conectar = async (body) => {
-    console.log(aoEnviar)
     const usuarioId = getDados().usuarioId;
-    console.log("aqui")
-    if(usuarioId){
-      console.log("aqui 2")
+    if (usuarioId){
       return await fetch("http://localhost:7000/usuarios/" + usuarioId, {
         method: "PUT",
         headers: {
@@ -79,7 +74,6 @@ function DadosPessoais({ aoEnviar, getDados }) {
             console.log(aoEnviar)
             aoEnviar(json)
           });
-          // aoEnviar({ nome, sobrenome, celular, promocoes });
         }
       }}
     >
