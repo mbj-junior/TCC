@@ -10,7 +10,7 @@ export default function DadosUsuarioLogin() {
   const [senha, setSenha] = useState("");
   const validacoes = useContext(ValidacoesCadastro);
   const [erros, validarCampos, possoEnviar] = useErros(validacoes);
-  const [cookies, setCookie] = useCookies(["token"]);
+  const [, setCookie] = useCookies(["token"]);
 
   function handleCookie(token) {
     setCookie("token", token, {
