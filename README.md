@@ -16,7 +16,7 @@ sudo apt install nodejs
 sudo apt install Mysql-server
 ```
 
-## Como rodar ?
+## Como executar
 
 ### Copie o link do repositório do Git e faça a clonagem
 
@@ -49,19 +49,19 @@ TCC/api/db/oumeajuda_db
 
 ### Iniciando a API
 
-entre na pasta
+Entre na pasta
 
 ```bash
 cd TCC/api
 ```
 
-instale o gerenciado de pacotes NPM
+Instale o gerenciado de pacotes NPM
 
 ```javascript
 npm install
 ```
 
-inicie a aplicação
+Inicie a aplicação
 
 ```javascript
 npm start
@@ -69,24 +69,24 @@ npm start
 
 ### Iniciando a serviço WEB
 
-entre na pasta
+Entre na pasta
 
 ```bash
 cd TCC/oumeajuda
 ```
 
-instale o gerenciado de pacotes NPM
+Instale o gerenciado de pacotes NPM
 
 ```javascript
 npm install
 ```
 
-inicie a aplicação
+Inicie a aplicação
 
 ```javascript
 npm start
 ```
 
-## Autor
+### Autor
 
 - [Marcio Junior](https://github.com/mbj-junior)
