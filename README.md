@@ -1,6 +1,6 @@
 # Trabalho de conclusão - TADS IFSP
 
-PLATAFORMA WEB PARA CONECTAR MONITORES E ESTUDANTES DE LINGUAGEM DE PROGRAMAÇÃO
+Plataforma web para conectar monitores e estudantes de linguagem de programação
 
 ## Requerimentos
 
