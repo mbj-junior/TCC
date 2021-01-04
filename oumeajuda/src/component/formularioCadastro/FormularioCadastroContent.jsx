@@ -1,5 +1,3 @@
-import "fontsource-roboto";
-
 import { Container, Typography } from "@material-ui/core";
 import {
   validarCelular,
