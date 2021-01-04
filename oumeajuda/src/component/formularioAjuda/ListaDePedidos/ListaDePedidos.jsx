@@ -3,7 +3,6 @@ import "./estilo.css";
 import { Grid, List } from "@material-ui/core";
 import React, { Component } from "react";
 
-import CardPedido from "../CardPedido";
 import Pedido from "../../muralPedidos/Pedido";
 
 class ListaDeNotas extends Component {
@@ -26,7 +25,7 @@ class ListaDeNotas extends Component {
   }
 
   render() {
-    console.log(this.props)
+    console.log(this.props);
     let index = 0;
     return (
       <Grid className="lista-pedidos">
@@ -34,28 +33,16 @@ class ListaDeNotas extends Component {
           {this.state.notas.map((nota, index) => {
             index++;
             return (
-              <Pedido ajuda={nota} linguagensMap={this.props.linguagensMap}></Pedido>
-            )
+              <Pedido
+                ajuda={nota}
+                linguagensMap={this.props.linguagensMap}
+              ></Pedido>
+            );
           })}
-            </List>
-      </Grid> 
+        </List>
+      </Grid>
     );
   }
 }
 
 export default ListaDeNotas;
-
-/*
-  <Pedido ajuda={nota} linguagens={linguagens}></Pedido> 
-  <CardPedido
-    indice={index}
-    apagarNota={this.props.apagarNota}
-    titulo={nota.titulo}
-    ListItemText texto={nota.texto}
-    categoria={nota.categoria}
-    contato={nota.contato}>
-  </CardPedido>
-
-*/
-
-
