@@ -7,7 +7,6 @@ import {
   validarSenha,
 } from "../../models/cadastro";
 
-// import "../../App.css";
 import FormularioCadastro from "./FormularioCadastro";
 import ValidacoesCadastro from "../../contexts/ValidacoesCadastro";
 

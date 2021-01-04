@@ -3,12 +3,12 @@ import { useEffect, useState } from "react";
 
 import DadosPessoais from "./DadosPessoais";
 import DadosUsuario from "./DadosUsuario";
-import Confirmacao from "./Confirmacao"
+import Confirmacao from "./Confirmacao";
 
 function FormularioCadastro() {
   const [etapaAtual, setEtapaAtual] = useState(0);
   const [dadosColetados, setDados] = useState({});
-  
+
   useEffect(() => {
     if (etapaAtual === formularios.length - 1) {
       coletarDados(dadosColetados);
@@ -31,7 +31,7 @@ function FormularioCadastro() {
   const formularios = [
     <DadosUsuario aoEnviar={coletarDados} />,
     <DadosPessoais aoEnviar={coletarDados} getDados={getDados} />,
-    <Confirmacao/>
+    <Confirmacao />,
   ];
 
   return (
