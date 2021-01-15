@@ -13,7 +13,7 @@ sudo apt install nodejs
 - MySQL
 
 ``` bash
-sudo apt install Mysql-server
+sudo apt install mysql-server
 ```
 
 ## Como executar
